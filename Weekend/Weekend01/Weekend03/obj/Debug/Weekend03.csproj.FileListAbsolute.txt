@@ -1,0 +1,8 @@
+C:\Users\whale\OneDrive\문서\AtentsFinal\Weekend\Weekend01\Weekend03\bin\Debug\Weekend03.exe.config
+C:\Users\whale\OneDrive\문서\AtentsFinal\Weekend\Weekend01\Weekend03\bin\Debug\Weekend03.exe
+C:\Users\whale\OneDrive\문서\AtentsFinal\Weekend\Weekend01\Weekend03\bin\Debug\Weekend03.pdb
+C:\Users\whale\OneDrive\문서\AtentsFinal\Weekend\Weekend01\Weekend03\obj\Debug\Weekend03.csproj.AssemblyReference.cache
+C:\Users\whale\OneDrive\문서\AtentsFinal\Weekend\Weekend01\Weekend03\obj\Debug\Weekend03.csproj.SuggestedBindingRedirects.cache
+C:\Users\whale\OneDrive\문서\AtentsFinal\Weekend\Weekend01\Weekend03\obj\Debug\Weekend03.csproj.CoreCompileInputs.cache
+C:\Users\whale\OneDrive\문서\AtentsFinal\Weekend\Weekend01\Weekend03\obj\Debug\Weekend03.exe
+C:\Users\whale\OneDrive\문서\AtentsFinal\Weekend\Weekend01\Weekend03\obj\Debug\Weekend03.pdb
