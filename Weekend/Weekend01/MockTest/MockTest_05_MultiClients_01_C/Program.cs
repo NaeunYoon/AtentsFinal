@@ -21,6 +21,12 @@ namespace MockTest_05_MultiClients_01_C
             clientSocket.Receive(receiveBuffer);
             string receiveMessage = Encoding.Default.GetString(receiveBuffer);
             Console.WriteLine("서버로부터 받은 메세지 : " +receiveMessage);
+
+            Array.Clear(receiveBuffer, 0, receiveMessage.Length);   //서버로부터 받은 메세지 버퍼 지워줌
+            
+            string message = string.Empty;
+            
+
         }
     }
 }
