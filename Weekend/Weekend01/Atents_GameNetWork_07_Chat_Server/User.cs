@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Atents_GameNetWork_07_Chat_Server;
 
+
 namespace UserInfo
 {
     class User
@@ -20,6 +21,7 @@ namespace UserInfo
         private const short MAXBUFSIZE = 128;
         //List<User> userList;
 
+        //유저마다 자신의 상태가 있고 상태에 따라 패킷을 보낸다
 
 
         public User(Socket _sock)   //리스트 인자도 지움
@@ -59,6 +61,17 @@ namespace UserInfo
             //userSock.Send(sendBuffer);
             userSock.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, Program.SendCallBack, this);
         }
+
+        public void SendSyncronous()
+        {
+            userSock.Send(sendBuffer);
+        }
+        public void ClearBuffer()
+        {
+            Array.Clear(sendBuffer,0,sendBuffer.Length);
+            Array.Clear(receiveBuffer, 0, receiveBuffer.Length);
+        }
+
         public void Close()
         {
             Console.WriteLine($"{userSock.RemoteEndPoint}님이 접속을 종료하셨습니다");
