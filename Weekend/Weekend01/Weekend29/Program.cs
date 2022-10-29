@@ -88,13 +88,13 @@ namespace Weekend29
     }
     class Sheep : Stock
     {
-    public Sheep(string name, float age, float weight, float healthrate): base(name, age, weight, healthrate)
-    {
-    }
-    public void Speak()
-    {
-        Console.WriteLine($"{_name}이 메에한다.");
-    }
+        public Sheep(string name, float age, float weight, float healthrate): base(name, age, weight, healthrate)
+        {
+        }
+        public void Speak()
+        {
+            Console.WriteLine($"{_name}이 메에한다.");
+        }
     }
 
 
