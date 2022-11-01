@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,7 +16,7 @@ namespace Atents_GameNetWork_07_Chat_Server
     {
         eWELCOME = 1000,
         eUSERINFO,    //사용자정보(개인정보)
-
+        eCONVERSATION
     }
 
     public struct USERINFO  //구조체 정의 : 구조체의 값을 채워서 보내준다
@@ -65,10 +66,18 @@ namespace Atents_GameNetWork_07_Chat_Server
         static void NewClient()
         {
             while (!interrupt)
-            {   
-                
-                serverSoket.BeginAccept(AcceptCallBack, null);
-                Thread.Sleep(10);
+            {
+                try
+                {
+                    
+                    serverSoket.BeginAccept(AcceptCallBack, null);
+                    Thread.Sleep(10);
+
+                }
+                catch (SocketException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
         static void AcceptCallBack(IAsyncResult ar)
@@ -85,7 +94,7 @@ namespace Atents_GameNetWork_07_Chat_Server
             WelcomePacket(user);
             SendUserInfo(user); //로그인 속도를 늦추더라도, 코드를 쉽게 작성하고자 이렇게 작성
             userList.Add(user); //사용자가 접속할 때마다 리스트에 add
-            user.Receive();
+            user.Receive(user);
 
             //userSock.Send(tmp);
             //userSock.BeginReceive(receiveBuffer,0,receiveBuffer.Length,SocketFlags.None, ReceiveCallBack,userSock);
@@ -152,6 +161,29 @@ namespace Atents_GameNetWork_07_Chat_Server
 
         }
 
+        public static void PacketParser(User _user)
+        {
+            byte[] _PACKETTYPE = new byte[2];   //패킷헤더는 항상 2바이트가 추가됨
+            Array.Copy(_user.receiveBuffer, 0, _PACKETTYPE, 0, _PACKETTYPE.Length);   //0 : 시작인덱스, 2: 바이트
+                                                                                     //(리시브버퍼에 있는걸 0번부터 2바이트만큼 패킷 배열에 복사)
+            short packetType = BitConverter.ToInt16(_PACKETTYPE, 0);    //v패킷타입을 정수형으로 변환
+
+            switch (packetType)
+            {
+                case (int)ePACKETTYPE.eCONVERSATION:
+                    //유저의 수신버퍼에 있는 내용을 모든 유저의 송신버퍼로 복사한 후 전송
+                    foreach(User one in userList)
+                    {
+                        Array.Copy(_user.receiveBuffer, one.sendBuffer, _user.receiveBuffer.Length);
+                        one.Send(_user);
+                        Array.Clear(_user.receiveBuffer,0,_user.receiveBuffer.Length);
+                    }
+
+                    break;
+            }
+
+        }
+
         public static void ReceiveCallBack(IAsyncResult ar)
         {
             User user = (User)ar.AsyncState;
@@ -162,15 +194,38 @@ namespace Atents_GameNetWork_07_Chat_Server
                 //Array.Clear(receiveBuffer,0,receiveBuffer.Length);//복사했으니까 지움..
                 //userSock.BeginSend(sendBuffer,0,sendBuffer.Length,SocketFlags.None, SendCallBack, userSock);
                 //전송이 끝나면 자동으로 샌드콜백 자동호출
-                user.CopyReceiveToSendBuffer();
-                user.Send();
 
+                //이전 에코서버임
+                //user.CopyReceiveToSendBuffer();
+                //user.Send();
+
+                //받은 대화내용을 모든 유저에게 전송
+                Console.WriteLine("대화내용 수신");
+                PacketParser(user);
+                user.Receive(user);
             }
             catch (SocketException e)
             {
+                //User finduser = userList.Find(o => o.Equals(user));
+                //if (finduser != null)
+                //{
+                try
+                {
+
+                    userList.Remove(user);
+                    user.Close();
+                }
+                catch (ObjectDisposedException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                //}
                 Console.WriteLine(e.Message);
-                userList.Remove(user);
-                user.Close();
+            }
+            catch (ObjectDisposedException e)
+            {
+
             }
         }
         public static void SendCallBack(IAsyncResult ar)
@@ -183,7 +238,8 @@ namespace Atents_GameNetWork_07_Chat_Server
                 ////유저소켓을 다시 리시브 상태로 돌려놓음
                 //userSock.BeginReceive(receiveBuffer, 0, receiveBuffer.Length, SocketFlags.None, ReceiveCallBack, userSock);
                 user.ClearSendBuffer();
-                user.Receive();
+                
+                //user.Receive();
 
             }
             catch (SocketException e)

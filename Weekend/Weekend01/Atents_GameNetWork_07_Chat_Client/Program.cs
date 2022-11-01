@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UserInfo;
@@ -13,6 +15,7 @@ namespace Atents_GameNetWork_07_Chat_Client
     public enum ePACKETTYPE
     {   eWELCOME=1000,
         eUSERINFO,    //사용자정보(개인정보) 
+        eCONVERSATION                       //채팅 추가
     }
 
     public struct USERINFO  //구조체 정의 : 구조체의 값을 채워서 보내준다
@@ -60,7 +63,7 @@ namespace Atents_GameNetWork_07_Chat_Client
             user.userSock.Receive(user.receiveBuffer);
             PacketParser();
             user.ClearReceiveBuffer();
-            user.Receive(); //갑자기 비동기 방식으로 수신;;;;
+            user.Receive(user); //갑자기 비동기 방식으로 수신;;;;
 
             //user.userSock.Receive(user.receiveBuffer);
             //PacketParser();
@@ -82,6 +85,13 @@ namespace Atents_GameNetWork_07_Chat_Client
             {
                 userMessage = Console.ReadLine();
 
+                byte[] _PACKETTYPE = BitConverter.GetBytes((ushort)ePACKETTYPE.eCONVERSATION);
+                byte[] tmp = Encoding.Default.GetBytes(userMessage);
+
+                Array.Copy(_PACKETTYPE,0, user.sendBuffer,0, _PACKETTYPE.Length);
+                Array.Copy(tmp, 0, user.sendBuffer, 2, tmp.Length);
+                user.Send(user);
+                //user.ClearSendBuffer();
 
             }
             user.Close();
@@ -91,12 +101,13 @@ namespace Atents_GameNetWork_07_Chat_Client
         public static void ReceiveCallBack(IAsyncResult ar)
         {
             PacketParser(); //패킷을 받을 때마다 패킷이 무엇을 해야 할지 알려줌
-            user.Receive();
+            user.Receive(user);
         }
 
         public static void SendCallBack(IAsyncResult ar)
         {
-
+            user.ClearSendBuffer();
+            user.Receive(user);
         }
 
         public static void PacketParser()
@@ -124,6 +135,7 @@ namespace Atents_GameNetWork_07_Chat_Client
                     //receive 버퍼에 있는걸 길이만큼 복사한거임
                     int uid = BitConverter.ToInt32(_uid, 0); //바이트를 정수로 바꿈 (서버에서 할당한 나의 아이디)
                     string message = Encoding.Default.GetString(_message); //바이트를 정수로 바꿈 (바이트 메시지를 문자열로 바꿈) /안녕하세요
+                        Console.WriteLine(message);
                     }
 
                     break;
@@ -140,8 +152,11 @@ namespace Atents_GameNetWork_07_Chat_Client
 
                     break;
 
-
-
+                case (int)ePACKETTYPE.eCONVERSATION:
+                    {
+                        Console.WriteLine("대화내용을 수신했습니다");
+                    }
+                    break;
             }
         }
 

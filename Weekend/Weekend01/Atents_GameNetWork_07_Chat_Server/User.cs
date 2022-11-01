@@ -49,17 +49,17 @@ namespace UserInfo
         //    userSock.Shutdown(SocketShutdown.Both);
         //    userSock.Close();
         //}
-        public void Receive()
+        public void Receive(User _user)
         {
             //userSock.Receive(receiveBuffer);
             /*Program.messageQueue.Enqueue(this);*/ //이건 뭐야..
-            userSock.BeginReceive(receiveBuffer, 0, receiveBuffer.Length, SocketFlags.None, Program.ReceiveCallBack, this);
+            userSock.BeginReceive(receiveBuffer, 0, receiveBuffer.Length, SocketFlags.None, Program.ReceiveCallBack, _user);
 
         }
-        public void Send()
+        public void Send(User _user)
         {
             //userSock.Send(sendBuffer);
-            userSock.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, Program.SendCallBack, this);
+            userSock.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, Program.SendCallBack, _user);
         }
 
         public void SendSyncronous()
