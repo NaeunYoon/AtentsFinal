@@ -116,6 +116,10 @@ public class _11_02_P2P_Server : MonoBehaviour
             short packetType = BitConverter.ToInt16(_Packet,0);
             switch ((int)packetType)
             {
+                case (int)ePACKETTYPE.NONE:
+
+                    break;
+
                 case (int)ePACKETTYPE.PEERINFO:
                           
                     break;
