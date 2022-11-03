@@ -15,19 +15,19 @@ namespace Atents_GameNetWork_07_Chat_Server
     public enum ePACKETTYPE //클라이언트와 서버는 구조체가 같아야 함 (또는 별도의 네임스페이스에 보관)
     {
         eWELCOME = 1000,
-        eUSERINFO,    //사용자정보(개인정보)
-        eCONVERSATION
+        eUSERINFO,    //사용자정보(개인정보) 1001
+        eCONVERSATION   //1002
     }
 
     public struct USERINFO  //구조체 정의 : 구조체의 값을 채워서 보내준다
     {
-        public int userID;  //서버에서 할당한 ID
+        public int userID;  //서버에서 할당한 ID, 0
 
     }
 
     public struct WELCOME
     {
-        public int userID;
+        public int userID;//0
         public string message;
     }
 
@@ -52,7 +52,7 @@ namespace Atents_GameNetWork_07_Chat_Server
 
             serverSoket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint endIP = new IPEndPoint(IPAddress.Parse(strIp), port);
-            serverSoket.Bind(endIP);
+            serverSoket.Bind(endIP);    //ip와 port 할당
             Console.WriteLine("bind");
             serverSoket.Listen(100);
             Console.WriteLine("Listen");

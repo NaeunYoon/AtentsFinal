@@ -13,21 +13,21 @@ using UserInfo;
 namespace Atents_GameNetWork_07_Chat_Client
 {
     public enum ePACKETTYPE
-    {   eWELCOME=1000,
-        eUSERINFO,    //사용자정보(개인정보) 
-        eCONVERSATION                       //채팅 추가
+    {   eWELCOME=1000,  //1000
+        eUSERINFO,    //사용자정보(개인정보) 1001
+        eCONVERSATION  //채팅 추가 1002
+    }
+    public struct WELCOME
+    {
+        public int userID;  //:0
+        public string message;//:1
     }
 
     public struct USERINFO  //구조체 정의 : 구조체의 값을 채워서 보내준다
     {
-        public int userID;  //서버에서 할당한 ID
+        public int userID;  //서버에서 할당한 ID :0
     }
 
-    public struct WELCOME
-    {
-        public int userID;
-        public string message;
-    }
 
     internal class Program
     {
@@ -59,6 +59,7 @@ namespace Atents_GameNetWork_07_Chat_Client
             //receiveBuffer = new byte[128];
             user = new User(new Socket( AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
             IPEndPoint endIP =new IPEndPoint(IPAddress.Parse(strIP), port);
+
             user.userSock.Connect(endIP);
             user.userSock.Receive(user.receiveBuffer);
             PacketParser();
@@ -122,23 +123,23 @@ namespace Atents_GameNetWork_07_Chat_Client
                 case (int)ePACKETTYPE.eWELCOME: //웰컴메세지 보낼 때
                     {
 
-                    byte[] _uid = new byte[4];  //id 는 정수형 이므로 4바이트
-                    byte[] _message = new byte[122];    //실제 대화내용 2바이트, 4바이트 뺴니까 실제로 122바이트 (메시지는 대화내용)
-                    Array.Copy(user.receiveBuffer,2,_uid, 0/*4*/, _uid.Length);
-                    //배옆에서 앞의 2바이트 처음부터 읽음 (카피한부분) 시작인덱스 0부터1까지 읽은거 ㅇㅇ
-                    //그 다음은 2바이트부터 ㅇ4바이트를 읽음 (시작인덱스 2부터 시작)
-                    //배열 2번째부터 4바이트 읽겠다
-                    Array.Copy(user.receiveBuffer, 6, _message, 0, _message.Length);
-                    //6바이트가 시작 인덱스고 122의 길이만큼 읽겠다
-                    //전체 배열에 있는걸 분리해서 저장한거임
+                        byte[] _uid = new byte[4];  //id 는 정수형 이므로 4바이트
+                        byte[] _message = new byte[122];    //실제 대화내용 2바이트, 4바이트 뺴니까 실제로 122바이트 (메시지는 대화내용)
+                        Array.Copy(user.receiveBuffer,2, _uid, 0/*4*/, _uid.Length);
+                        //배옆에서 앞의 2바이트 처음부터 읽음 (카피한부분) 시작인덱스 0부터1까지 읽은거 ㅇㅇ
+                        //그 다음은 2바이트부터 ㅇ4바이트를 읽음 (시작인덱스 2부터 시작)
+                        //배열 2번째부터 4바이트 읽겠다
+                        Array.Copy(user.receiveBuffer, 6, _message, 0, _message.Length);
+                        //6바이트가 시작 인덱스고 122의 길이만큼 읽겠다
+                        //전체 배열에 있는걸 분리해서 저장한거임
 
-                    //receive 버퍼에 있는걸 길이만큼 복사한거임
-                    int uid = BitConverter.ToInt32(_uid, 0); //바이트를 정수로 바꿈 (서버에서 할당한 나의 아이디)
-                    string message = Encoding.Default.GetString(_message); //바이트를 정수로 바꿈 (바이트 메시지를 문자열로 바꿈) /안녕하세요
-                        Console.WriteLine(message);
+                        //receive 버퍼에 있는걸 길이만큼 복사한거임
+                        int uid = BitConverter.ToInt32(_uid, 0); //바이트를 정수로 바꿈 (서버에서 할당한 나의 아이디)
+                        string message = Encoding.Default.GetString(_message); //바이트를 정수로 바꿈 (바이트 메시지를 문자열로 바꿈) /안녕하세요
+                            Console.WriteLine(message);
                     }
+                        break;
 
-                    break;
                 case (int)ePACKETTYPE.eUSERINFO:
                     {
                         byte[] _uid = new byte[4];  //id 는 정수형 이므로 4바이트
@@ -149,7 +150,6 @@ namespace Atents_GameNetWork_07_Chat_Client
                         Console.WriteLine(uid+"님의 정보를 수신했습니다");
                             
                     }
-
                     break;
 
                 case (int)ePACKETTYPE.eCONVERSATION:
