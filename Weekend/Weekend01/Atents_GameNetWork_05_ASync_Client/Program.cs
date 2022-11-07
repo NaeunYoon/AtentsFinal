@@ -11,6 +11,9 @@ namespace Atents_GameNetWork_05_ASync_Client
     internal class Program
     {
         static string strIp = "127.0.0.1";
+
+        
+
         static Socket clientSock;
         static int port = 8082;
         static void Main(string[] args)
@@ -19,6 +22,12 @@ namespace Atents_GameNetWork_05_ASync_Client
             {
                 clientSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 IPEndPoint ip = new IPEndPoint(IPAddress.Parse(strIp), port);
+
+                /*byte[] array; *//*= new byte[128];*/
+                //IPAddress obj = new IPAddress(new byte[]{127,0,0,1});
+                //IPAddress OBJ1 = new IPAddress(127001);
+                //IPAddress o = new IPAddress(,,)
+
                 clientSock.Connect(ip);                 // 원격 호스트에 대한 연결을 설정
                 byte[] receiveBuffer = new byte[128];
                 clientSock.Receive(receiveBuffer);

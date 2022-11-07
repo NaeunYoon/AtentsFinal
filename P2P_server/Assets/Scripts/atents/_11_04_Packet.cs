@@ -2,17 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _11_04_Packet : MonoBehaviour
+namespace Game.Packet
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public enum ePacketType
     {
-        
+       NONE,
+       PEERINFO=1000,
+       CHAMOVE,
     }
 
-    // Update is called once per frame
-    void Update()
+     public struct PEERINFO
     {
-        
+        ePacketType ePacketType;
+        int uid;
+
+
+    }
+
+    public struct CHARMOVE
+    {
+        public ePacketType ePacket;
+        public int uid;
+        public float x;
+        public float y;
+        public float z;
     }
 }
+ 
+
+ 
+
