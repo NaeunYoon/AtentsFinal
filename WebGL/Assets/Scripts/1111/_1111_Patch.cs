@@ -61,13 +61,21 @@ public class _1111_Patch : MonoBehaviour
                 currentVersion = one.Key;
                 ReadVersionPatch(one.Value);
                 Debug.Log(one.Key);
+
+                yield return null;
+                yield return StartCoroutine(ReadVersionPatch(one.Value));
                 
             }
             yield return null;  
     }
 
-    void ReadVersionPatch (string _filename)
+    IEnumerator ReadVersionPatch (string _filename)
     {
+        // GamePatch_1_1.csv 파일을 내려받고, 파일의 내용을 읽어서 패치를 진행한다
+        string url = "file:///" + Application.dataPath + "/PatchInfo/" + _filename; //게임폴더
+
+        
+
         using (StreamReader sr = new StreamReader(_filename))
         {
             string line = string.Empty;
@@ -76,6 +84,7 @@ public class _1111_Patch : MonoBehaviour
                 //패치받아야 할 에셋 번들 내용
             }
         }
+        yield return null;
     }
 
 
