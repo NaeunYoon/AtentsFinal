@@ -43,11 +43,56 @@ namespace Weekend43
 
     }
 
+    class Parent { }
+
+    class Child : Parent
+    {
+        public void DoSomething()
+        {
+            Console.WriteLine("Child::DoSomething");
+        }
+
+    }
 
     internal class Program
     {
         static void Main(string[] args)
         {
+
+            Parent parent = new Parent();
+            Parent parent2 = new Child();
+
+            Child child;
+
+            child = parent as Child;
+
+            if (child != null)
+            {
+                Console.WriteLine("실행 x");
+                child.DoSomething();
+            }
+
+            child = parent2 as Child;
+
+            if (child != null)
+            {
+                Console.WriteLine("실행 o");
+                child.DoSomething();
+            }
+
+
+            if (parent is Child)
+            {
+                child = (Child)parent;
+                child.DoSomething();
+            }
+
+            if (parent2 is Child)
+            {
+                child = (Child)parent2;
+                child.DoSomething();
+            }
+
         }
     }
 }
