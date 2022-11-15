@@ -9,11 +9,11 @@ namespace STD_START_30
 {
     internal class Program
     {
-
+        //system.Array
         private static void OutputArrayInfo(Array arr)
         {
             Console.WriteLine("배열의 차원 수 "+ arr.Rank);
-            Console.WriteLine("배열의 요소 수 "+arr.Length);
+            Console.WriteLine("배열의 요소 수 "+ arr.Length);
         }
 
         private static void OutputArrayElement(string title, Array arr)
@@ -27,11 +27,9 @@ namespace STD_START_30
         }
         static void Main(string[] args)
         {
-            //Array : Rank, Length, Sort, GetValue, Copy
+            //Array : Rank (차원 수) , Length (요소 수), Sort (정렬), GetValue (배열 요소 값), Copy (복사)
             int[] intArray = new int[] { 0, 1, 2, 3, 4, 5 };
 
-
-            //후...배고파요진심
             bool[,] boolArray = new bool[,] { {true, false }, { true, false }};
             OutputArrayInfo(boolArray);
 
@@ -40,12 +38,12 @@ namespace STD_START_30
 
             OutputArrayElement("원본 intArray",intArray2);
             Array.Sort(intArray2);
-            OutputArrayElement("array.sort 후 inyarray ",intArray2);
+            OutputArrayElement("array.sort 후 intarray ",intArray2);
 
             int[] copyArray = new int[intArray2.Length];
             Array.Copy(intArray2,copyArray, intArray2.Length);
 
-            OutputArrayElement(";",copyArray);
+            OutputArrayElement("copy array",copyArray);
         }
     }
 }
