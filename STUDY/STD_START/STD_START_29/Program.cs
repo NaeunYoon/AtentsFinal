@@ -31,7 +31,7 @@ namespace STD_START_29
 
             n2 = 6;
             Console.WriteLine(n1.Equals(n2));
-
+            //여기까지
             string txt1 = new string (new char[] { 't', 'e', 'x', 't' });
             string txt2 = new string (new char[] {'t', 'e', 'x', 't' });
             Console.WriteLine(txt1.Equals(txt2));
