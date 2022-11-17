@@ -22,13 +22,13 @@ namespace STD_START_38
         }
         public override bool Equals(object obj)
         {
-            if(obj == null)
+            if (obj == null)
             {
                 return false;
             }
 
             Book book = obj as Book;
-            if(book == null)
+            if (book == null)
             {
                 return false;
             }

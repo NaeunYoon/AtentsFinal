@@ -31,14 +31,14 @@ namespace STD_START_34
     class Book
     {
         decimal isbn13;
-        public Book(decimal isbn)   //생성자
+        public Book(decimal isbn13)   //생성자
         {
-            this.isbn13 = isbn;
+            this.isbn13 = isbn13;
         }
-        public Book()
-        {
-            
-        }
+
+        //public Book()
+        //{           
+        //}
     }
 
     class EBook : Book

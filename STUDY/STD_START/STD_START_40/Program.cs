@@ -23,15 +23,17 @@ namespace STD_START_40
             return new Kilogram(this.mass + target.mass);   //..?
         }
 
-        public override string ToString()
+        public override string ToString()   //자동으로 붙음
         {
             return mass + "kg";
         }
         public static Kilogram operator + (Kilogram op1, Kilogram op2)//...1. 메서드 유형이 정적으로 바뀌었고
                                                                       //2. operator 예약어와 함꼐 + 연산자 기호가 메서드 이름을 대신한다
-                                                                      //??
+                                                                      //??operator + : 함수명
         {
-           return new Kilogram(op1.mass + op2.mass);
+            return new Kilogram(op1.mass + op2.mass);   //kg 클래스의 객체를 반환
+
+            //생성자 : 객체가 처음 생성될 때 호출되어 멤버 변수를 초기화하고, 필요에 따라 자원을 할당하기도 한다
         }
     }
     internal class Program
