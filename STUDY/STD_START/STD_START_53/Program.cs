@@ -48,6 +48,7 @@ namespace STD_START_53
     {
         public void TurnOn() { }    //추상메서드와는 달리 override 예약어가 필요 없음
                                     //인터페이스의 메서드를 자식 클래스에서 구현 할 때에는 반드시 public 
+                                    //안녕안녕
     }
 
 
