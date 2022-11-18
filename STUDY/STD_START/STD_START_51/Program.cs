@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace STD_START_50
+namespace STD_START_51
 {
-
     class Person
     {
         public int Age;
@@ -14,16 +14,17 @@ namespace STD_START_50
 
         public Person(int age, string name)
         {
-            this.Age = age;
-            this.Name = name;
+            Age = age;
+            Name = name;
         }
 
         public override string ToString()
         {
             return Name + " : " + Age;
         }
-    }
 
+    }
+    delegate bool CompareDelegate(Person arg1, Person arg2);
     class SortPerson
     {
         Person[] men;
@@ -33,7 +34,7 @@ namespace STD_START_50
             this.men = men;
         }
 
-        public void Sort()
+        public void Sort(CompareDelegate compareMethod)
         {
             Person tmp;
 
@@ -43,7 +44,7 @@ namespace STD_START_50
 
                 for (int j = i+1; j < men.Length; j++)
                 {
-                    if (men[j].Age < men[lowPos].Age)
+                    if (compareMethod(men[j], men[lowPos]))
                     {
                         lowPos = j;
                     }
@@ -53,7 +54,6 @@ namespace STD_START_50
                 men[i] = tmp;
             }
         }
-
         public void Display()
         {
             for (int i = 0; i < men.Length; i++)
@@ -63,12 +63,29 @@ namespace STD_START_50
         }
     }
 
-
     internal class Program
     {
+        static bool AscSortByName(Person arg1, Person arg2)
+        {
+            return arg1.Name.CompareTo(arg2.Name) < 0;
+        }
+
+
+
         static void Main(string[] args)
         {
+            Person[] personArray = new Person[]
+            {
+                new Person(51, "Anders"),
+                new Person(37,"Scott"),
+                new Person(45,"Peter"),
+                new Person(62,"Mads"),
+            };
 
+            SortPerson so = new SortPerson(personArray);
+            so.Sort(AscSortByName);
+            so.Display();
+            
         }
     }
 }

@@ -19,40 +19,33 @@ namespace STD_START_42
                   new를 사용해 인스턴스로 만들 수 없으며 추상 메서드를 가질 수 있다
      
      */
-
     class Point
     {
         int x, y;
-
         public Point(int x, int y)  //생성자
         {
             this.x = x;
             this.y = y;
         }
-
         public override string ToString()
         {
             return "\nx :" + x + ", y :" + y+ "\n";
         }
     }
-
     abstract class DrawingObject    //추상클래스
     {
         public abstract void Draw();    //추상메서드 : 코드 없는 가상 메서드
-
         public void Move() { Console.WriteLine("Move"); }   //일반 메서드 정의 가능
-
     }
     
     class Line : DrawingObject
     {
         Point p1, p2;   //어떻게 이렇게 했지................ ㅠㅠ
-        public Line(Point p1, Point p2)
+        public Line(Point p1, Point p2) //생성자
         {
             this.p1 = p1;
             this.p2 = p2;
         }
-
         public override void Draw() //추상클래스의 추상 메서드를 반드시 정의해야 함
                                     //추상메서드는 가상 메서드에 속하기 때문에 자식 클래스에서 override 예약어를 사용해 재정의한다
                                     //가상 메서드 이므로 다형성의 특징이 적용된다
@@ -68,7 +61,6 @@ namespace STD_START_42
         {
             DrawingObject line = new Line(new Point(10, 10), new Point(20, 20));    //다형성 (부모가 자식을 받음)
             line.Draw();    //다형성에 따라 Line.Draw() 가 호출된다
-
             line.Move();    //일반 메서드도 쓸 수 있음
 
         }

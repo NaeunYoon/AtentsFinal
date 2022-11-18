@@ -34,6 +34,7 @@ namespace STD_START_40
             return new Kilogram(op1.mass + op2.mass);   //kg 클래스의 객체를 반환
 
             //생성자 : 객체가 처음 생성될 때 호출되어 멤버 변수를 초기화하고, 필요에 따라 자원을 할당하기도 한다
+            //op1의 mass값과 op2의 mass값을 더한 값을 생성자로 갖는 킬로그램 객체를 반환한다
         }
     }
     internal class Program

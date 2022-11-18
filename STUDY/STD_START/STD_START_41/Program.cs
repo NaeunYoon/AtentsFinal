@@ -12,7 +12,6 @@ namespace STD_START_41
      클래스간의 형변환
      
      */
-
     public class Currency
     {
         decimal money;
@@ -20,32 +19,22 @@ namespace STD_START_41
         {
             get { return money; }
         }
-
         public Currency(decimal money)  //생성자
         {
             this.money = money;
         }
     }
-
     public class Won : Currency
     {
-        public Won(decimal money) : base(money)
-        {
-
-        }
-
+        public Won(decimal money) : base(money){}   //생성자
         public override string ToString()
         {
             return Money + "Won";
         }
     }
-
     public class Dollar : Currency
     {
-        public Dollar(decimal money) : base(money)
-        {
-
-        }
+        public Dollar(decimal money) : base(money){}    //생성자
 
         public override string ToString()
         {
@@ -58,18 +47,13 @@ namespace STD_START_41
                                                     //: 반드시 형변환 연산자를 사용해야만 won 타입으로 변경할 수 있다
         }
     }
-
     public class Yen : Currency
     {
-        public Yen(decimal money) : base(money)
-        {
-
-        }
+        public Yen(decimal money) : base(money){}   //생성자
         public override string ToString()
         {
             return Money + "Yen";
         }
-
         static public implicit operator Won(Yen yen)    //*****************************************************************
         {
             return new Won(yen.Money * 13m);    //1엔당 13원으로 가정,
@@ -77,9 +61,6 @@ namespace STD_START_41
                                                 //암시적인 형변환이 가능하므로 명시적으로 캐스팅 연상자를 쓰는것도 허용된다 
         }
     }
-
-    
-
 
     internal class Program
     {
