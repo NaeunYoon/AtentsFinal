@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
-using Unity.VisualScripting;
+using static _11_25_Mob;
 
 public class _11_25_JsonExample : MonoBehaviour
 {
 
     List<_11_25_Mob> list;
-    // Start is called before the first frame update
+
     void Start()
     {
         TextAsset txtAsset = Resources.Load<TextAsset>("JobInfo_1");
@@ -28,21 +28,26 @@ public class _11_25_JsonExample : MonoBehaviour
         {
             _11_25_Mob tmp = new _11_25_Mob();
             tmp.INDEX = 100;
-            tmp.Name = "가나다" +i.ToString();
+            tmp.NAME = "가나다" +i.ToString();
             list.Add(tmp);
         }
-        string isonData = JsonUtility.ToJson(new Serialization<_11_25_Mob>(list));
-        Debug.Log(isonData);
-        List<_11_25_Mob>mobList = JsonUtility.FromJson<Serialization<_11_25_Mob>>(isonData).ToString();
+
+        string jsonData = JsonUtility.ToJson (new Serialization<_11_25_Mob>(list));
+        Debug.Log(jsonData);
+
+        List<_11_25_Mob> mobList = JsonUtility.FromJson < Serialization<_11_25_Mob>>(jsonData).ToList();
         for (int i = 0; i < mobList.Count; i++)
         {
             Debug.Log(mobList[i].INDEX);
-            Debug.Log(mobList[i].Name);
+            Debug.Log(mobList[i].NAME);
         }
+
+
+
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         

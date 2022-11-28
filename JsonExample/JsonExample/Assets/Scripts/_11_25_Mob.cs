@@ -18,7 +18,7 @@ public class _11_25_Mob
         set { index = value; }
     }
 
-    public string Name
+    public string NAME
     {
         get { return name; }
         set { name = value; }
@@ -35,13 +35,11 @@ public class _11_25_Mob
         name = _name;   
     }
 
-    [Serializable]
+    //[Serializable]
 
     public class Serialization<T>
     {
-        [SerializeField]
-
-        List<T> _t;
+        [SerializeField] List<T> _t;
 
         public List<T> ToList() { return _t; }
         public Serialization(List<T> _tmp)
@@ -49,8 +47,4 @@ public class _11_25_Mob
             _t = _tmp;
         }
     }
-
-
-
-
 }
