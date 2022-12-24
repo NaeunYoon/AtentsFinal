@@ -26,6 +26,7 @@ public class _12_24_Normalized : MonoBehaviour
         //transform.position += Vector3.right * speed * Time.deltaTime;
         //transform.position += Vector3.one * speed * Time.deltaTime;
         //transform.position += Vector3.down * speed * Time.deltaTime;
+        //transform.position += Vector3.forward * speed * Time.deltaTime;
 
 
 
