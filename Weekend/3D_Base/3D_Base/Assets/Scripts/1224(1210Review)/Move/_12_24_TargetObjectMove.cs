@@ -28,8 +28,12 @@ public class _12_24_TargetObjectMove : MonoBehaviour
 
     void Update()
     {
-        //TargetObject 방향으로 이동시키기
-        Vector3 direct = targetObject.transform.position - this.transform.position;
+        //TargetObject 방향으로 이동시키기(1)
+        //Vector3 direct = targetObject.transform.position - this.transform.position;
+       // transform.position += direct.normalized * 10f * Time.deltaTime;
+
+        //TargetObject 방향으로 이동시키기(2)
+        Vector3 direct = _TargetObject.transform.position - this.transform.position;
         transform.position += direct.normalized * 10f * Time.deltaTime;
     }
 }
