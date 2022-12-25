@@ -10,11 +10,11 @@ public class _12_24_TargetObjectMove : MonoBehaviour
      */
 
     //방법1
-    //Find 명령어로 찾는다
+    //Find 명령어로 찾는다 (동적으로 만든 오브젝트라 가져오기 힘들 때)
     GameObject targetObject;
 
     //방법2
-    //연결해서 찾는다
+    //연결해서 찾는다 (이미 화면상에 있는 오브젝트인 경우에는 인스펙터 창에서 그냥 연결한다)
     [SerializeField] private GameObject _TargetObject;
 
 
