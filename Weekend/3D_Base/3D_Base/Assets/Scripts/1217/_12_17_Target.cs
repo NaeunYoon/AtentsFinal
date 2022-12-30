@@ -38,8 +38,14 @@ public class _12_17_Target : MonoBehaviour
         //0.1 이면 10만큼 와있는거임
 
 
-        this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, Time.deltaTime * 1.3f);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, Time.deltaTime * 0.03f);
         //rpg 몬스터같은거 만들 떄 따라다니도록 하는 데 사용한다
+
+        //타겟을 중심으로 공전하는 함수
+        this.transform.RotateAround(target.transform.position, Vector3.up, 10f * Time.deltaTime);
+        //y축을 기준으로 내 오브젝트가 타겟을 주위로 돈다
+        //또는 내가 임의로 벡터를 만들어서 할 수도 있음
+        //this.transform.RotateAround(target.transform.position, new Vector3(1f,0f,1f), 10f * Time.deltaTime);
 
 
     }
