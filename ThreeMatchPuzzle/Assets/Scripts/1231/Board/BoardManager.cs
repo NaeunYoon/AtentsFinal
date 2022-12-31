@@ -20,9 +20,17 @@ public class BoardManager : MonoBehaviour
      */
     [SerializeField] private GameObject _blockPrefab;
     private Vector3 _screenPos; //스크린 0,0 점의 월드 좌표값 저장
-    private float _screenwidth;   //스크린의 넓이
+    private float _screenWidth;   //스크린의 넓이
     private float _blockWidth; //블럭의 넓이
-    private Vector3 _screenheight; //스크린의 높이
+    //private Vector3 _screenheight; //스크린의 높이
+
+    public float _xMargin=2f;
+    public float _yMargin=4f;
+    private float _blockScale = 0.0f;    // 블럭의 스케일 값 저장
+    public Transform _parents;
+
+    private GameObject[,] _gameBoard; //게임 저장용 보드
+
     void Start()
     {
         //스크린 0,0 좌표를 월드 공간상의 좌표값으로 변환 
@@ -34,7 +42,7 @@ public class BoardManager : MonoBehaviour
         //월드공간상의 우상단은 2.8,5,0
         //월드공간상의 우하단은 2.8 -5,0
         _screenPos.y = -_screenPos.y;
-        _screenwidth = Mathf.Abs(_screenPos.x * 2); //스크린의 너비를 구한다
+        _screenWidth = Mathf.Abs(_screenPos.x * 2); //스크린의 너비를 구한다
         //블럭 이미지의 픽셀값을 100으로 나눠서 블럭 넓이를 구한다
         //이미지 크기가 100 이라고 할 떄 픽셀의 갯수가 너비로 100 높이로 100개 있다는 것이다
         //그것을 3d 공간상의 너비값으로 바꾸는 방법을 픽셀값을 100으로 나누면 된다
@@ -52,22 +60,68 @@ public class BoardManager : MonoBehaviour
 
     void MakeBoard(int column, int row)
     {
-        float width = _screenwidth;  //출력되는 너비 ( 마진갑 없음)
+        float width = _screenWidth - (_xMargin*2);  //출력되는 너비 ( 마진갑 없음)
         //블럭의 출력 너비값 = 블럭의 너비값 * 전체 개수
         float blockWidth = _blockWidth * row;
         //블럭의 넓이에서 스크린의 넓이를 나눠서 블럭의 사이즈를 조절할 수 있다
-        float _blockScale = width / blockWidth; //블럭의 스케일 값
-
+        _blockScale = width / blockWidth; //블럭의 스케일 값
+        _gameBoard = new GameObject[column, row];
         for (int co = 0; co < column; co++)
         {
             for (int ro = 0; ro < row; ro++)
             {
-                GameObject blockObj = Instantiate<GameObject>(_blockPrefab);
-                blockObj.transform.localEulerAngles = new Vector3(_blockScale,_blockScale, 0f);
-                blockObj.transform.position = new Vector3(_screenPos.x+ro + 0.5f ,_screenPos.y - co -0.5f, 0f);
+                _gameBoard[co,ro] = Instantiate<GameObject>(_blockPrefab);
+                _gameBoard[co, ro].transform.SetParent(_parents);
+                _gameBoard[co, ro].transform.localScale = new Vector3(_blockScale, _blockScale, 0f);
+                _gameBoard[co, ro].transform.position = new Vector3(_screenPos.x + _xMargin + ro * (_blockWidth * _blockScale) + (_blockWidth * _blockScale / 2f),
+                                                         _screenPos.y - _yMargin - co * (_blockWidth * _blockScale) - (_blockWidth * _blockScale / 2f),
+                                                          0f);
+                _gameBoard[co, ro].GetComponent<Block>().Width = _blockWidth*_blockScale;
+                _gameBoard[co, ro].GetComponent<Block>().MovePos = _gameBoard[co, ro].transform.position;
+                //_gameBoard[co, ro].GetComponent<Block>().Move(DIRECTION.LEFT);
+
+                //GameObject blockObj = Instantiate<GameObject>(_blockPrefab);
+                //blockObj.transform.SetParent(_parents);
+                //blockObj.transform.localScale = new Vector3(_blockScale,_blockScale, 0f);
+                //blockObj.transform.position = new Vector3(_screenPos.x + _xMargin + ro*(_blockWidth*_blockScale) + (_blockWidth * _blockScale/2f) ,
+                //                                          _screenPos.y - _yMargin - co * (_blockWidth * _blockScale) - (_blockWidth * _blockScale / 2f),
+                //                                          0f);
+                //blockObj.GetComponent<Block>().Width = _blockWidth; //블럭의 너비값을 블럭에 전달
+                //blockObj.GetComponent<Block>().MovePos = blockObj.transform.position;   //생성위치값 저장
+                //blockObj.GetComponent<Block>().Move(DIRECTION.LEFT);    
             }
         }
     }
+
+    public void MoveBlocksLeft()
+    {
+        foreach (var item in _gameBoard)
+        {
+            item.GetComponent<Block>().Move(DIRECTION.LEFT);
+        }
+    }
+    public void MoveBlocksRight()
+    {
+        foreach (var item in _gameBoard)
+        {
+            item.GetComponent<Block>().Move(DIRECTION.RIGHT);
+        }
+    }
+    public void MoveBlocksUp()
+    {
+        foreach (var item in _gameBoard)
+        {
+            item.GetComponent<Block>().Move(DIRECTION.UP);
+        }
+    }
+    public void MoveBlocksDown()
+    {
+        foreach (var item in _gameBoard)
+        {
+            item.GetComponent<Block>().Move(DIRECTION.DOWN);
+        }
+    }
+
 
     void Update()
     {
