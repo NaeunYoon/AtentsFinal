@@ -13,7 +13,7 @@ public class _12_17_Tank : MonoBehaviour
     private float _rSpeed = 50f;
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -152,4 +152,24 @@ public class _12_17_Tank : MonoBehaviour
         transform.Rotate(Vector3.up * horizontal * rotSpeed);
     }
     #endregion
+
+    #region Collider
+    private void OnCollisionEnter(Collision collision)
+    {
+        //충돌했을 떄 충돌된 물체가 없어지게 함
+        if (collision.collider.tag.Contains("Monster"))
+        {
+            Destroy(collision.collider.gameObject);
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        //충돌상태일 때
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        //충돌하고 떨어질 때
+    }
+    #endregion
+
 }
