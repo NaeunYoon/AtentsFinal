@@ -1,7 +1,0 @@
-﻿  DoublyLinkedList.c
-  Test_DoublyLinkedList.c
-C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Project\_2_Project_DLL\Test_DoublyLinkedList.c(31,5): warning C4013: 'DLL_InsertAfter'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-  코드를 생성하고 있습니다...
-Test_DoublyLinkedList.obj : error LNK2019: DLL_DestroyNodemain 함수에서 참조되는 확인할 수 없는 외부 기호
-Test_DoublyLinkedList.obj : error LNK2019: DLL_GetNodeAtmain 함수에서 참조되는 확인할 수 없는 외부 기호
-C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Project\x64\Debug\_2_Project_DLL.exe : fatal error LNK1120: 2개의 확인할 수 없는 외부 참조입니다.
