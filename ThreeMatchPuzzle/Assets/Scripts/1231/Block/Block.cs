@@ -20,8 +20,11 @@ public enum BLOCKSTATE  //블럭의 상태를 나타낸다 (블럭이 이동중이면 이동이 끝난 
 public class Block : MonoBehaviour
 {
     //[SerializeField] : private 인데, 에디터상에서 수정이 가능하다. (기획자가 건드려야 할 값들은 인스펙터창에 보이도록 만들어야 한다)
+    //=============================================================================================01
+    //블럭 이미지를 가져온다
     [SerializeField] private SpriteRenderer _blockImage;
-
+    //==============================================================================================02
+    //외부에서 접근할 수 있도록 프로퍼티를 만들어준다 (프리팹에 스크립트를 장착한다)
     public SpriteRenderer blockImage    //프로퍼티 생성
     {
         get { return _blockImage; }
@@ -42,6 +45,13 @@ public class Block : MonoBehaviour
     public BLOCKSTATE CURRENTSTATE 
     { set; 
       get; } = BLOCKSTATE.STOP;
+
+    //20230107
+    public int _column { set; get; }
+    public int _row { set; get; }
+
+    //이미지의 타입을 지정해준다 (프로퍼티)
+    public int Type { set; get; }
 
 
     void Start()
