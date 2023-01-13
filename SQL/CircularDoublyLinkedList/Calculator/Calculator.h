@@ -1,8 +1,8 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
+#include "LinkedListStack.h"
 #include <stdlib.h>
-
 
 typedef enum
 {

@@ -15,22 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Calculator.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Test_Calculator.c">
+    <ClCompile Include="Calculator.cpp">
       <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedListStack.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Calculator.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkedListStack.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
