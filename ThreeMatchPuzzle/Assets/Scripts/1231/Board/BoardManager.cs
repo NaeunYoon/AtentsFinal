@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Linq;
 
-public enum MouseMoveDirection
+public enum MouseMoveDirection1
 {
     MOUSEMOVEUP,
     MOUSEMOVEDOWN,
@@ -64,6 +64,7 @@ public class BoardManager : MonoBehaviour
     //삭제된 블럭 저장
     private List<GameObject> _removedBlocks = new List<GameObject>();
 
+    private int TYPECOUNT = 4; //생성될 블럭의 종류 수
     void Start()
     {
         //============================================================================================02
@@ -172,7 +173,8 @@ public class BoardManager : MonoBehaviour
 
 
                 //============================================================================
-                int _type = UnityEngine.Random.Range(0, _sprites.Length);
+                //int _type = UnityEngine.Random.Range(0, _sprites.Length);
+                int _type = UnityEngine.Random.Range(0, TYPECOUNT);
                 _gameBoard[co, ro].GetComponent<Block>().Type = _type;
                 _gameBoard[co, ro].GetComponent<Block>().blockImage.sprite= _sprites[_type];
 
@@ -260,12 +262,12 @@ public class BoardManager : MonoBehaviour
         if (difference > _moveDistance && _clickObject != null&&_inputOK)
         {
             _inputOK= false;
-            MouseMoveDirection dir = calculateDirection();
+            MouseMoveDirection1 dir = calculateDirection();
             Debug.Log("direction " + dir);
 
             switch (dir)
             {
-                case MouseMoveDirection.MOUSEMOVELEFT:
+                case MouseMoveDirection1.MOUSEMOVELEFT:
                     {
                         int column = _clickObject.GetComponent<Block>()._column;
                         int row = _clickObject.GetComponent<Block>()._row;
@@ -287,7 +289,7 @@ public class BoardManager : MonoBehaviour
                         break;
                     }
 
-                case MouseMoveDirection.MOUSEMOVERIGHT:
+                case MouseMoveDirection1.MOUSEMOVERIGHT:
                     {
                         int column = _clickObject.GetComponent<Block>()._column;
                         int row = _clickObject.GetComponent<Block>()._row;
@@ -309,7 +311,7 @@ public class BoardManager : MonoBehaviour
                         break;
                     }
 
-                case MouseMoveDirection.MOUSEMOVEUP:
+                case MouseMoveDirection1.MOUSEMOVEUP:
                     {
                         int column = _clickObject.GetComponent<Block>()._column;
                         int row = _clickObject.GetComponent<Block>()._row;
@@ -331,7 +333,7 @@ public class BoardManager : MonoBehaviour
                         break;
                     }
 
-                case MouseMoveDirection.MOUSEMOVEDOWN:
+                case MouseMoveDirection1.MOUSEMOVEDOWN:
                     {
                         int column = _clickObject.GetComponent<Block>()._column;
                         int row = _clickObject.GetComponent<Block>()._row;
@@ -361,25 +363,25 @@ public class BoardManager : MonoBehaviour
     /// 마우스 이동 시 이동한 방향을 계산
     /// </summary>
     /// <returns></returns>
-    private MouseMoveDirection calculateDirection() 
+    private MouseMoveDirection1 calculateDirection() 
     { 
         float angle = CalculateAngle(_startPos,_endPos);
         if(angle >= 315.0f && angle <=360.0f || angle >=0f && angle < 45.0f)
         {
-            return MouseMoveDirection.MOUSEMOVEUP;
+            return MouseMoveDirection1.MOUSEMOVEUP;
         }else if( angle>=45.0f && angle < 135.0f)
         {
-            return MouseMoveDirection.MOUSEMOVELEFT;
+            return MouseMoveDirection1.MOUSEMOVELEFT;
         }else if(angle >=135.0f && angle < 225.0f)
         {
-            return MouseMoveDirection.MOUSEMOVEDOWN;
+            return MouseMoveDirection1.MOUSEMOVEDOWN;
         }else if (angle>=225.0f && angle < 315.0f)
         {
-            return MouseMoveDirection.MOUSEMOVERIGHT;
+            return MouseMoveDirection1.MOUSEMOVERIGHT;
         }
         else
         {
-            return MouseMoveDirection.MOUSEMOVEDOWN;
+            return MouseMoveDirection1.MOUSEMOVEDOWN;
         }
     }
     /// <summary>
@@ -448,17 +450,17 @@ public class BoardManager : MonoBehaviour
                         tmpMatchList.Add(_gameBoard[j, i]);
                     }
                 }
-                //열에 따른 행을 다 돈 후
-                //tmpmatchList의 count을 체크한다
-                if (tmpMatchList.Count >= 3)
-                {
-                    matchList.AddRange(tmpMatchList);
-                    tmpMatchList.Clear();
-                }
-                else
-                {
-                    tmpMatchList.Clear();
-                }
+            }
+            //열에 따른 행을 다 돈 후
+            //tmpmatchList의 count을 체크한다
+            if (tmpMatchList.Count >= 3)
+            {
+                matchList.AddRange(tmpMatchList);
+                tmpMatchList.Clear();
+            }
+            else
+            {
+                tmpMatchList.Clear();
             }
         }
         tmpMatchList.Clear();
@@ -517,6 +519,7 @@ public class BoardManager : MonoBehaviour
             }
 
         }
+        
 
         //matchList의 중복된 블럭을 추려냄
         //중복된거 빼고 리턴
@@ -525,9 +528,105 @@ public class BoardManager : MonoBehaviour
         {
             foreach (var item in matchList)
             {
+                //보드상에서 블럭을 없애버린다 (매치된 블럭을 삭제처리)
+                //보드 상에서 해당 위치의 블럭을 널처리 한다
+                _gameBoard[item.GetComponent<Block>()._column, item.GetComponent<Block>()._row] = null;
+                //해당 블럭을 비활성화시킨다.
                 item.SetActive(false);
             }
+            //삭제 예정인 블럭들을 삭제 블럭리스트에 저장하기
+            _removedBlocks.AddRange(matchList);
         }
+        //삭제될 블럭을 삭제 블럭리스트에 저장하고
+        _removedBlocks.AddRange(_removingBlocks);
+        //중복된 블럭을 처리한다
+        _removedBlocks = _removedBlocks.Distinct().ToList();
+
+        DownMoveBlocks();
+    }
+
+    private void DownMoveBlocks()
+    {
+        int moveCount = 0; //하강해야할 칸 수를 저장
+        
+        for(int row = 0; row <Row; row++)
+        {
+            for (int col = Column-1; col >=0; col--)
+            {
+                //게임 보드상에 블럭이 없는 경우
+                if (_gameBoard[col, row] == null)
+                {
+                    moveCount++;
+                }
+                else //게임보드상의 블럭이 있는 경우
+                {
+                    if (moveCount > 0)  //하강유무 체크
+                    {
+                        Block block = _gameBoard[col, row].GetComponent<Block>();
+                        block.MovePos = block.transform.position;
+                        //이동할 위치값을 기록
+                        block.MovePos = new Vector3(block.MovePos.x, block.MovePos.y - block.Width * moveCount, block.MovePos.z);
+                        //이전에 있던 게임보드상의 위치를 초기화
+                        _gameBoard[col, row] = null;
+                        //게임보드상의 이동할 위치로 변경
+                        block._column = block._column + moveCount;
+                        //블록 이름을 변경한다
+                        block.gameObject.name = $"Block[{block._column},{block._row}]";
+                        //게임보드상의 이동할 위치에 블럭의 참조값 저장
+                        _gameBoard[block._column, block._row] = block.gameObject;
+
+                        block.Move(DIRECTION.DOWN, moveCount);
+
+
+                    }
+                }
+            }
+            moveCount = 0;
+        }
+    }
+    /// <summary>
+    /// 게임보드상에 삭제된 블럭의 공간을 새로운 블럭으로 채움
+    /// </summary>
+    private void CreateMoveBlocks()
+    {
+        int moveCount = 0;
+        for (int row = 0; row < Row; row++)
+        {
+            for (int col = Column-1; col >=0 ; col--)
+            {
+                if (_gameBoard[col, row] == null)
+                {
+
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 새로이 생성될 블럭을 전달한다.
+    /// </summary>
+    /// <param name="column"></param>
+    /// <param name="row"></param>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    private GameObject GetNewBlock(int column, int row, int type)
+    {
+        // 삭제된 블럭이 없는 경우
+        // 해당 경우는 발생하면 안됨.
+        if (_removedBlocks.Count <= 0)
+        {
+            return null;
+        }
+
+        // 삭제된 블럭을 저장한 리스트에서 블럭을 하나 가지고 온다.
+        GameObject obj = _removedBlocks[0];
+        // 블럭을 전달 받은 인자 값으로 초기화한다.
+        obj.GetComponent<Block>().Init(column, row, type, _sprites[type]);
+
+        _removedBlocks.Remove(obj); // 전달한 블럭을 삭제된 블럭 저장 리스트에서 삭제처리
+
+        return obj;
+
     }
 
 

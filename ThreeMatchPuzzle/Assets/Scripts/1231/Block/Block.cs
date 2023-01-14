@@ -4,14 +4,14 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public enum DIRECTION
+public enum DIRECTION1
 {
     LEFT,
     RIGHT,
     UP,
     DOWN
 }
-public enum BLOCKSTATE  //블럭의 상태를 나타낸다 (블럭이 이동중이면 이동이 끝난 후에 이동을 시키게 하기 위해서)
+public enum BLOCKSTATE1  //블럭의 상태를 나타낸다 (블럭이 이동중이면 이동이 끝난 후에 이동을 시키게 하기 위해서)
 {
     STOP,
     MOVE
@@ -58,6 +58,11 @@ public class Block : MonoBehaviour
     {
         
     }
+
+    /// <summary>
+    /// 블럭을 up, down, left, right로 한칸이동하는 함수
+    /// </summary>
+    /// <param name="dirction"></param>
     public void Move(DIRECTION dirction)
     {
         if(CURRENTSTATE == BLOCKSTATE.MOVE) //블럭이 움직이는 상태라면
@@ -94,6 +99,51 @@ public class Block : MonoBehaviour
                 direction = DIRECTION.DOWN; //이동할 방향을 저장
                 break;
         }
+    }
+
+    public void Move (DIRECTION direct, int moveCount)
+    {
+        switch (direct)
+        {
+            case DIRECTION.LEFT:
+                {
+                    direct= DIRECTION.LEFT;
+                    CURRENTSTATE = BLOCKSTATE.MOVE;
+                }
+                break;
+            case DIRECTION.RIGHT:
+                {
+                    direct = DIRECTION.RIGHT;
+                    CURRENTSTATE = BLOCKSTATE.MOVE;
+                }
+                break;
+            case DIRECTION.UP:
+                {
+                    direct = DIRECTION.UP;
+                    CURRENTSTATE = BLOCKSTATE.MOVE;
+                }
+                break;
+            case DIRECTION.DOWN:
+                {
+                    direct = DIRECTION.DOWN;
+                    CURRENTSTATE = BLOCKSTATE.MOVE;
+                }
+                break;
+        }
+    }
+    /// <summary>
+    /// 블럭 정보 초기화 함수
+    /// </summary>
+    /// <param name="column"></param>
+    /// <param name="row"></param>
+    /// <param name="type"></param>
+    /// <param name="sprite"></param>
+    public void Init(int column, int row, int type, Sprite sprite)
+    {
+        _column = column;
+        _row = row;
+        Type = type;
+        blockImage.sprite = sprite;
     }
 
     void Update()

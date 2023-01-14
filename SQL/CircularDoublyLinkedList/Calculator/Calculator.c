@@ -85,10 +85,10 @@ void GetPostfix(char* InfixExpression, char* PostfixExpression)
 {
 	LinkedListStack* Stack;
 
-	char Token[32];
-	int Type = -1;
-	unsigned int Position = 0;
-	unsigned int Length = strlen(InfixExpression);
+	char Token[32];	//분리해낸 토큰 저장
+	int Type = -1;	//토큰의 타입 저장 (쓰지 않는 값으로 초기화) : 구별하기 위한 정수값
+	unsigned int Position = 0; //읽은 위치
+	unsigned int Length = strlen(InfixExpression);	//길이  5 : 1+2*3
 
 	LLS_CreateStack(&Stack);
 
