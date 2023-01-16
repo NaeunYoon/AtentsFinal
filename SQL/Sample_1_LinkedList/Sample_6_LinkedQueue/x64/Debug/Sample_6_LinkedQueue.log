@@ -1,0 +1,18 @@
+﻿  CircularQueue.c
+  Test_CircularQueue.c
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(10,22): warning C4047: '함수': 'CircularQueue **'의 간접 참조 수준이 'CircularQueue *'과(와) 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(10,17): warning C4024: 'CQ_CreateQueue': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(11,22): warning C4047: '함수': 'CircularQueue **'의 간접 참조 수준이 'CircularQueue *'과(와) 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(11,17): warning C4024: 'CQ_CreateQueue': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(12,22): warning C4047: '함수': 'CircularQueue **'의 간접 참조 수준이 'CircularQueue *'과(와) 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(12,17): warning C4024: 'CQ_CreateQueue': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(13,22): warning C4047: '함수': 'CircularQueue **'의 간접 참조 수준이 'CircularQueue *'과(와) 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(13,17): warning C4024: 'CQ_CreateQueue': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(15,88): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(15,88): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 3개가 제공되었습니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(16,88): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(16,88): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 3개가 제공되었습니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(17,88): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Sample_6_LinkedQueue\Test_CircularQueue.c(17,88): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 3개가 제공되었습니다.
+  코드를 생성하고 있습니다...
+  Sample_6_LinkedQueue.vcxproj -> C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\x64\Debug\Sample_6_CircularQueue.exe

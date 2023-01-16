@@ -287,7 +287,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955492608}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: MoveBlocksLeft
         m_Mode: 1
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955492608}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: MoveBlocksUp
         m_Mode: 1
@@ -640,7 +640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 955492609}
-  - component: {fileID: 955492608}
+  - component: {fileID: 955492610}
   m_Layer: 0
   m_Name: GamePlay
   m_TagString: Untagged
@@ -648,36 +648,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &955492608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955492607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8686eb32e18f9fd4ca238bbb5b79ca89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _blockPrefab: {fileID: 6747237741370423855, guid: acccf351d5ae5954aa4a6128c48e1b04, type: 3}
-  _xMargin: 1
-  _yMargin: 2
-  _parents: {fileID: 1634292383}
-  _sprites:
-  - {fileID: 21300000, guid: c42ec58c952b4d2489271bd6beb0f430, type: 3}
-  - {fileID: 21300000, guid: 5506c5b1f2da66c4ab19134c53d938b8, type: 3}
-  - {fileID: 21300000, guid: 41af2fc74148a454d8ce759159e54075, type: 3}
-  - {fileID: 21300000, guid: a8588118eeef53343b87cf9a3ae9410b, type: 3}
-  - {fileID: 21300000, guid: 7359b50b3b9abac4e977e5bb6b87695c, type: 3}
-  - {fileID: 21300000, guid: 4f68faa16b761e840b6be5f3c7a7c0af, type: 3}
-  - {fileID: 21300000, guid: ce4ad2ed6625cd34d921e2043707b037, type: 3}
-  - {fileID: 21300000, guid: f6ea30fca99fd23449e32dc5e3b2cdaf, type: 3}
-  - {fileID: 21300000, guid: 12149ed928b6b9a4ebc17505803cef59, type: 3}
-  - {fileID: 21300000, guid: 48eaa47a7ec244545bd5df6674beb001, type: 3}
-  - {fileID: 21300000, guid: 87d2808a84d248e4ca21aaa63a0e05fa, type: 3}
-  - {fileID: 21300000, guid: b4287d0ff225fa246b592d90f49b15e7, type: 3}
-  - {fileID: 21300000, guid: 417b5241e5da1124faa5834833426e38, type: 3}
 --- !u!4 &955492609
 Transform:
   m_ObjectHideFlags: 0
@@ -693,6 +663,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &955492610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955492607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c8011329cf97a40ba537108bf48932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1013515201
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +759,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955492608}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: MoveBlocksRight
         m_Mode: 1
@@ -911,7 +893,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955492608}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: MoveBlocksDown
         m_Mode: 1

@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{48dbea18-9690-4787-a78c-4371fe7ca9ec}</ProjectGuid>
-    <RootNamespace>Sample6LinkedQueue</RootNamespace>
+    <ProjectGuid>{9d95eab9-f607-4f8f-9cde-e3b32e6f0bae}</ProjectGuid>
+    <RootNamespace>Sample7LinkedQueue</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Sample_6_CircularQueue</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CircularQueue.h" />
+    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\3장\LinkedQueue\LinkedQueue.c" />
+    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\3장\LinkedQueue\Test_LinkedQueue.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CircularQueue.c" />
-    <ClCompile Include="Test_CircularQueue.c" />
+    <ClInclude Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\3장\LinkedQueue\LinkedQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
