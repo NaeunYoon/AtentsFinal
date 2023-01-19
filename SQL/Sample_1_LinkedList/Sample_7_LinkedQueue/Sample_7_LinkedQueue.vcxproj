@@ -24,6 +24,7 @@
     <ProjectGuid>{9d95eab9-f607-4f8f-9cde-e3b32e6f0bae}</ProjectGuid>
     <RootNamespace>Sample7LinkedQueue</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Sample_07_LinkedQueue</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

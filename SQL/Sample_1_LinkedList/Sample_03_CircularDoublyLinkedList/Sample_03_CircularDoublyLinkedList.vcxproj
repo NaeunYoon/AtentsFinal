@@ -24,7 +24,7 @@
     <ProjectGuid>{4dd9614f-da05-45bb-bb6f-0d90a0e12c3d}</ProjectGuid>
     <RootNamespace>Sample03CircularDoublyLinkedList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Sample_3_CircularDoublyLinkedList</ProjectName>
+    <ProjectName>Sample_03_CircularDoublyLinkedList</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

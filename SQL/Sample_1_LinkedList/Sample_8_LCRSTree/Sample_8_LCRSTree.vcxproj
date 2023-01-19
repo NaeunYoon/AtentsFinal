@@ -24,6 +24,7 @@
     <ProjectGuid>{efb558e8-b11d-4b8b-b0c2-bb96b1091d03}</ProjectGuid>
     <RootNamespace>Sample8LCRSTree</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Sample_08_LCRSTree</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

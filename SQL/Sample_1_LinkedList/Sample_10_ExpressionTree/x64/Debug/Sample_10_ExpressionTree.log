@@ -1,0 +1,5 @@
+﻿  ExpressionTree.c
+C:\Users\whale\OneDrive\바탕 화면\source\source_뇌자극알고리즘_7쇄\4장\ExpressionTree\ExpressionTree.c(66,23): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Test_ExpressionTree.c
+  코드를 생성하고 있습니다...
+  Sample_10_ExpressionTree.vcxproj -> C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\x64\Debug\Sample_10_ExpressionTree.exe

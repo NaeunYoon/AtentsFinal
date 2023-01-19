@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b70721cd-ec9a-49d1-93f7-a1f536b023f6}</ProjectGuid>
-    <RootNamespace>Sample1LinkedList</RootNamespace>
+    <ProjectGuid>{58e62502-298b-4836-b425-9332db760da6}</ProjectGuid>
+    <RootNamespace>Sample10ExpressionTree</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Sample_01_SingleLinkedList</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\바탕 화면\Test_LinkedList\LinkedList.c" />
-    <ClCompile Include="..\..\..\..\..\바탕 화면\Test_LinkedList\Test_LinkedList.c" />
+    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\4장\ExpressionTree\ExpressionTree.c" />
+    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\4장\ExpressionTree\Test_ExpressionTree.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\바탕 화면\Test_LinkedList\LinkedList.h" />
+    <ClInclude Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\4장\ExpressionTree\ExpressionTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
