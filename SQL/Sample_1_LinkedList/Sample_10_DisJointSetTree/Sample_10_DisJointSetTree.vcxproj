@@ -18,20 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\3장\CircularQueue\CircularQueue.c" />
-    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\3장\CircularQueue\Test_CircularQueue.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\3장\CircularQueue\CircularQueue.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{48dbea18-9690-4787-a78c-4371fe7ca9ec}</ProjectGuid>
-    <RootNamespace>Sample6LinkedQueue</RootNamespace>
+    <ProjectGuid>{4543270b-aef5-4b67-86f9-d2fc665631bb}</ProjectGuid>
+    <RootNamespace>Sample10DisJointSetTree</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Sample_06_CircularQueue</ProjectName>
+    <ProjectName>Sample_11_DisJointSetTree</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -134,6 +127,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\4장\DisjointSet\DisjointSet.c" />
+    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\4장\DisjointSet\Test_DisjointSet.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\4장\DisjointSet\DisjointSet.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
