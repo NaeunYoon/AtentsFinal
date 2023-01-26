@@ -21,9 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a6ce18f4-3a55-4511-a218-11109d0f5c6d}</ProjectGuid>
-    <RootNamespace>Sample12BubbleSort</RootNamespace>
+    <ProjectGuid>{5ff905b8-df09-4673-9dcd-cbcf47777610}</ProjectGuid>
+    <RootNamespace>Practice01BubbleSort</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Sample_Practice_01_BubbleSort</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -127,7 +128,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\5장\BubbleSort\BubbleSort.c" />
+    <ClCompile Include="Bubble.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Score.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,4 @@
+﻿  Bubble.c
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Practice_01_BubbleSort\Bubble.c(29,23): warning C4047: '함수': 'Score **'의 간접 참조 수준이 'Score [30000]'과(와) 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\Practice_01_BubbleSort\Bubble.c(29,16): warning C4024: 'BubbleSort': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+  Practice_01_BubbleSort.vcxproj -> C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\Sample_1_LinkedList\x64\Debug\Sample_Practice_01_BubbleSort.exe

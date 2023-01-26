@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\5장\BubbleSort\BubbleSort.c">
+    <ClCompile Include="..\..\..\..\..\바탕 화면\source\source_뇌자극알고리즘_7쇄\5장\InsertionSort\InsertionSort.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
