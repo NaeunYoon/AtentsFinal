@@ -1,0 +1,6 @@
+﻿  Test_LinkedList.c
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\EX_01_SequentialSearch__LinkedList\EX_01_SequentialSearch__LinkedList\Test_LinkedList.c(30041,29): warning C4047: '=': 'Node *'의 간접 참조 수준이 'Node **'과(와) 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\EX_01_SequentialSearch__LinkedList\EX_01_SequentialSearch__LinkedList\Test_LinkedList.c(30033,11): warning C4047: '초기화 중': 'Node *'의 간접 참조 수준이 'Node **'과(와) 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\EX_01_SequentialSearch__LinkedList\EX_01_SequentialSearch__LinkedList\Test_LinkedList.c(30082,29): warning C4047: '함수': 'Node **'의 간접 참조 수준이 'Node *'과(와) 다릅니다.
+C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\EX_01_SequentialSearch__LinkedList\EX_01_SequentialSearch__LinkedList\Test_LinkedList.c(30082,25): warning C4024: 'SLL_MoveToFront': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+  EX_01_SequentialSearch__LinkedList.vcxproj -> C:\Users\whale\OneDrive\문서\AtentsFinal_1\SQL\EX_01_SequentialSearch__LinkedList\x64\Debug\EX_01_SequentialSearch__LinkedList.exe

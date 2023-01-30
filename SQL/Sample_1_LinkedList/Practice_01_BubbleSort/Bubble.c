@@ -30,7 +30,13 @@ int main(void)
 
     for (int i = 0; i < 10; i++)
     {
-        printf("%lf ", DataSet[i].score);
+        printf("number : %d, score : %lf ", DataSet[i].number, DataSet[i].score);
+        printf("\n");
+    }
+
+    for (int i = 29990; i < 30000; i++)
+    {
+        printf("number : %d, score : %lf ", DataSet[i].number, DataSet[i].score);
         printf("\n");
     }
 
