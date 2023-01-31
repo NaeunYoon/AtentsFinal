@@ -7,6 +7,7 @@ Node* SLL_CreateNode(ElementType NewData)
 
     if (NewNode != NULL) {
         NewNode->Data = NewData;  /*  데이터를 저장한다. */
+        NewNode->Frequency = 0;
         NewNode->NextNode = NULL; /*  다음 노드에 대한 포인터는 NULL로 초기화 한다. */
     }
 
