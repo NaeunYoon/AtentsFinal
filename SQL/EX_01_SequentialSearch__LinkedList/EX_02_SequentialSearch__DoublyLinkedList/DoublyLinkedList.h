@@ -8,12 +8,12 @@ typedef Score ElementType;
 
 typedef struct tagNode
 {
-    ElementType Data;   //결론적으로 int Data
+    ElementType Data;   
     int Frequency;
     struct tagNode* PrevNode;
     struct tagNode* NextNode;
 } Node;
-//노드라는 이름으로 사용할 수 있게 TYPEDF로 재정의
+
 
 /* 함수 원형 선언 */
 Node* DLL_CreateNode( ElementType NewData );

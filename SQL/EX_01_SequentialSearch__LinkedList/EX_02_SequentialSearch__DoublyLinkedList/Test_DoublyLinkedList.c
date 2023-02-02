@@ -30122,7 +30122,23 @@ Node* DL_Transpose(Node** Head, double searchValue)
 
 Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
 {
-  
+    Node* Current = *Head;
+    while (Current != NULL)
+    {
+        if (Current->Data.score == scoreValue)
+        {
+            Current->Frequency++;
+            if (Current->Frequency > Current->PrevNode->Frequency) {
+                
+            }
+
+        }
+
+
+
+        Current = Current->NextNode;
+    }
+    return NULL;
 }
 
 int main(void)
