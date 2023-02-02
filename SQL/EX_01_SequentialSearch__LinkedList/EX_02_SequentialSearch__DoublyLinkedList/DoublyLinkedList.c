@@ -7,9 +7,10 @@ Node* DLL_CreateNode(ElementType NewData)
     Node* NewNode = (Node*)malloc(sizeof(Node));
 
     NewNode->Data = NewData;
+    NewNode->Frequency = 0;
     NewNode->PrevNode = NULL;
     NewNode->NextNode = NULL;
-
+    
     return NewNode;
 }
 

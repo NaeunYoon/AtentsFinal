@@ -30250,10 +30250,91 @@ Node* SLL_Transpose(Node** Head, double scoreValue)
 찾는 값을 찾을때마다 빈도수가 올라간다
 빈도수를 앞쪽과 비교해서 높으면 앞으로 이동한다.
 빈도수는 앞쪽부터 비교해서 적절한 곳에 삽입한다.
+
+1. 찾는 값을 가진 노드를 찾는다
+2. 찾는 값을 가진 노드의 빈도수를 1 올린다
+3. 찾는 값을 가진 노드와 앞노드의 빈도수를 비교한다
+4. 찾는 값을 가진 노드의 앞노드가 찾는 값을 가진 노드의 빈도수보다 작으면 찾는 값을 가진 노드를 링크에서 제거한다
+5. 헤드에서부터 빈도수를 비교해서 삽입될 위치를 찾는다
 */
 Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
 {
+    Node* Current = *Head;
+    Node* Prev = NULL;
+    while (Current!=NULL)
+    {
+        if (Current->Data.score == scoreValue)
+        {
+            break;
+        }
 
+        if (Current == NULL)
+        {
+            //찾는 값을 가진 노드가 없는 경우
+            return NULL;
+        }
+        else 
+        {
+            //찾는 값을 가진 노드가 있는 경우
+            //찾는 값을 가진 노드의 주소값을 MatchNode에 저장
+            Node* MatchNode = Current;
+            MatchNode->Frequency++;
+
+            if (MatchNode == *Head)
+            {
+                //찾는 값을 가진 노드가 헤드노드인 경우
+                return MatchNode;
+            }
+            else 
+            {
+                //찾는 값을 가진 노드가 헤드노드가 아닌 경우
+
+                if (Prev->Frequency < MatchNode->Frequency)
+                {
+                    //이전노드 frequency가 더 작은 경우 노드를 링크에서 제거한다
+                }
+                else if (Prev->Frequency == MatchNode->Frequency)
+                {
+                    return MatchNode;
+                }
+                else if (Prev->Frequency < MatchNode->Frequency)
+                {
+                    Prev->NextNode = MatchNode->NextNode;
+                    Prev = NULL;
+                    Current = (*Head);
+
+                    while (Current !=NULL)
+                    {
+                        if (Current->Frequency < MatchNode->Frequency)
+                        {
+                            if (Prev == NULL)
+                            {
+                                //빈도수가 작은 노드가 헤드노드인경우
+                                //매치노드가 헤드가 되어야함
+                                MatchNode->NextNode = Current;
+                                (*Head) = MatchNode;
+                                return MatchNode;
+                            }
+                            else
+                            {
+                                //빈도수가 작은 노드가 헤드노드가 아닌 경우
+                                Prev->NextNode = MatchNode;
+                                MatchNode->NextNode = Current;
+                                return MatchNode;
+                            }
+                            Prev = Current;
+                            Current = Current->NextNode;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+        Prev = Current;
+        Current = Current->NextNode;
+    }
 
 
 

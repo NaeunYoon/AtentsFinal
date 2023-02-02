@@ -9,6 +9,7 @@ typedef Score ElementType;
 typedef struct tagNode
 {
     ElementType Data;   //결론적으로 int Data
+    int Frequency;
     struct tagNode* PrevNode;
     struct tagNode* NextNode;
 } Node;
