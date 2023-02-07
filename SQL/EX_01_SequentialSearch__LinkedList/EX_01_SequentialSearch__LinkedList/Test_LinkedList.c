@@ -30043,6 +30043,55 @@ Node* SLL_SequentialSearch(Node* Head, double scoreValue)
 current 의 위치에서는 앞쪽 노드를 알 수 없기 때문에 이동때마다 prev 노드가 앞쪽
 주소를 가지고 있어야 한다.
 */
+
+Node* SLL_SequentialSearch1(Node* Head, double scoreValue)
+{
+    Node* Current = Head;
+    while (1)
+    {
+        if (Current->Data.score == scoreValue) {
+            return Current;
+        }
+        Current = Current->NextNode;
+    }
+}
+
+Node* SLL_Transpose1(Node** Head, double scoreValue)
+{
+    Node* Current = *Head;
+    Node* Prev = NULL;
+
+    while (Current != NULL) //null이 아닐 때까지 돈다
+    {
+        if (Current->Data.score == scoreValue)
+        {
+            if (Current == *Head)
+            {
+                return Current;
+            }
+            else if (Current->NextNode == NULL)
+            {
+                Node* temp = Current;
+                Prev->NextNode = Current->NextNode;
+                Current->NextNode = Prev;
+                Current = Prev;
+                Prev = temp;
+
+                return Current;
+            }
+            else
+            {
+
+
+            }
+
+        }
+        Prev = Current;
+        Current = Current->NextNode;
+    }
+
+}
+
 Node* SLL_MoveToFront(Node** Head,  double scoreValue) {
 
     //찾은 노드를 링크에서 뺀다
@@ -30054,7 +30103,6 @@ Node* SLL_MoveToFront(Node** Head,  double scoreValue) {
     //3. 내가 찾고자 하는 노드가 꼬리에 있을 경우 ( 앞에있는걸 null로 만들고 앞으로 보냄)
 
     //하려고 하는 것 : 헤드로 이동하게 한다
-
     
     Node* Current = *Head;  //헤드노드의 주소값을 Current 노드에 저장
     Node* Prev = NULL;  //이전 노드의 주소값을 저장하는 노드
@@ -30240,8 +30288,6 @@ Node* SLL_Transpose(Node** Head, double scoreValue)
     //    Current = Current->NextNode;
 
     /*}*/
-
-
     return NULL;
 }
 //계수법
@@ -30327,17 +30373,11 @@ Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
                         }
                     }
                 }
-
-
             }
         }
-
         Prev = Current;
         Current = Current->NextNode;
     }
-
-
-
 }
 
 int main(void)
@@ -30349,7 +30389,6 @@ int main(void)
     Node* NewNode = NULL;//새롭게 만든 노드의 주소값
 
     int Length = sizeof(DataSet) / sizeof(DataSet[0]);  //요소 배열의 갯수
-
 
     for (i = 0; i < Length; i++)
     {
@@ -30366,14 +30405,17 @@ int main(void)
         scanf_s("%lf", &inputValue);
 
         //순차
-        //Node* MatchNode = SLL_SequentialSearch(List, inputValue);
-        //전진 : 노드형 포인터 포인터, 
+        //Node* MatchNode = SLL_SequentialSearch1(List, inputValue);
+        
+        //전진이동법 :노드형 포인터 포인터
+        Node* MatchNode = SLL_Transpose1(&List, inputValue);
         // 헤드의 주소값을 저장하는 공간의 주소를 받기 때문에 list 변수의 주소값을 전달해야 한다
-        //Node* MatchNode = SLL_MoveToFront(&List,inputValue);
-        //전위
-        //Node* MatchNode = SLL_Transpose(&List, inputValue);
+        //Node* MatchNode = SLL_MoveToFront1(&List,inputValue);
+        
+        //전위법
+        
         //계수
-         Node* MatchNode = SLL_FindWithFrequency(&List, inputValue);
+        //Node* MatchNode = SLL_FindWithFrequency(&List, inputValue);
 
         if (inputValue == -1) {
             printf("작업을 중지");
@@ -30400,9 +30442,7 @@ int main(void)
             Current = SLL_GetNodeAt(List, i);
             printf("List[%d] : frequency : %d, number : %d, score : %lf\n", i, Current->Frequency, Current->Data.number, Current->Data.score);
         }
-
     }
-
 
     /*  모든 노드를 메모리에서 제거     */
     printf("\nDestroying List...\n");

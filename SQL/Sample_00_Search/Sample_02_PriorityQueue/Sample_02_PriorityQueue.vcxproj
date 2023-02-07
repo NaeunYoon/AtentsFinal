@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{06c64139-ec04-4cc0-b324-590dd99edcc6}</ProjectGuid>
-    <RootNamespace>Sample00Search</RootNamespace>
+    <ProjectGuid>{44841bb0-e9d3-4b65-8948-9fb6a97f3023}</ProjectGuid>
+    <RootNamespace>Sample02PriorityQueue</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Sample_01_BinarySearch</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,10 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinarySearch.c" />
+    <ClCompile Include="LinkedQueue.c" />
+    <ClCompile Include="Test_LinkedQueue.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Score.h" />
+    <ClInclude Include="LinekedQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

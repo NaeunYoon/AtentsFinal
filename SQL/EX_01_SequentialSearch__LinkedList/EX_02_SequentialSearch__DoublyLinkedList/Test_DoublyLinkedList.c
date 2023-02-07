@@ -30056,8 +30056,6 @@ Node* DL_MoveToFront(Node** Head, double searchValue)
 
                 return Current;
             }
-
-
         }
         Current = Current->NextNode;
     }
@@ -30119,7 +30117,6 @@ Node* DL_Transpose(Node** Head, double searchValue)
 
     return NULL;
 }
-
 Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
 {
     Node* Current = *Head;
@@ -30130,12 +30127,8 @@ Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
             Current->Frequency++;
             if (Current->Frequency > Current->PrevNode->Frequency) {
                 
-            }
-
+            } 
         }
-
-
-
         Current = Current->NextNode;
     }
     return NULL;
@@ -30168,9 +30161,11 @@ int main(void)
         {
             break;
         }
-
+        //전진이동법
         //Node* MatchNode = DL_SequentialSearch(List, SearchValue);
+        // 전위법
         //Node* MatchNode = DL_MoveToFront(&List, SearchValue);
+        //계수법
         Node* MatchNode = DL_Transpose(&List, SearchValue);
         
         if(MatchNode != NULL)

@@ -15,12 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BinarySearch.c">
+    <ClCompile Include="LinkedQueue.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Test_LinkedQueue.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Score.h">
+    <ClInclude Include="LinekedQueue.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
