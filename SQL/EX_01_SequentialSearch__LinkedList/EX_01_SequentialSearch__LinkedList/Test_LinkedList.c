@@ -30010,10 +30010,11 @@ Score DataSet[] =
 };
 
 #pragma endregion
-
+#pragma region 순차탐색 : 앞쪽에서 뒷쪽으로 탐색
 //순차탐색 ( 메인에 있는 리스트의 주소값, 내가 입력한 실수형)
 //score 값을 기준으로 내가 찾고자 하는 값이 있는지 탐색
 //앞쪽에서 뒷쪽으로 탐색한다
+#pragma endregion
 Node* SLL_SequentialSearch(Node* Head, double scoreValue) 
 {
     // 메인에 있는 List 변수 ( 첫번째 노드의 주소값이 저장되어 있음)
@@ -30047,166 +30048,7 @@ Node* SLL_SequentialSearch1(Node* Head, double scoreValue)
     }
 }
 
-
-//전위법
-/*
-자기 앞쪽노드의 앞쪽으로 간다.
-*/
-Node* SLL_Transpose(Node** Head, double scoreValue) 
-{
-    /*
-    1. 찾는 값을 가진 노드가 헤드인 경우
-    2. 찾는 값을 가진 노드가 꼬리인 경우
-    3. 찾는 값을 가진 노드가 헤드 다음인 경우 (앞으로 가면서 헤드가 된다)
-    4. 찾는 값을 가진 노드가 헤드도 꼬리도 아닌 경우
-    */
-
-    Node* Current = *Head;
-    Node* Prev = NULL;
-    Node* PPrev = NULL;
-
-    //링크드 리스트를 헤드에서 꼬리까지 순회
-    //currentn변수에 저장되어있는 값이 꼬리노드 다음이 아닌 경우
-    while (Current != NULL)
-    {
-        //내가 찾는 값을 가진 노드를 찾는다
-        if (Current->Data.score == scoreValue)
-        {
-            if (Current == *Head)
-            {
-                return Current;
-            }
-            else if (Current == (*Head)->NextNode)
-            {
-                //찾는 값을 가진 노드가 헤드 다음인 경우
-                //current노드를 링크에서 제거
-                (*Head)->NextNode = Current->NextNode;
-                //current를 헤드 노드로 만든다
-                //current 다음노드에 헤드노드의 주소값을 기록
-                Current->NextNode = (*Head);
-                //메인의 list 변수 (* head) 에 current 변수에 저장된 주소값을 저장하여 
-                //헤드노드를 변경
-                (*Head) = Current;
-
-                return Current;
-
-            }
-            else if (Current->NextNode == NULL)
-            {
-                //찾는 값을 가진 노드가 꼬리인 경우
-                 Prev->NextNode=Current->NextNode;
-
-                PPrev->NextNode = Current;
-                Current->NextNode = Prev;
-                return Current;
-            }
-            else
-            {
-                //찾는 값을 가진 노드가 헤드도 꼬리도 아닌 경우
-                Prev->NextNode = Current->NextNode;
-
-                PPrev->NextNode = Current;
-                Current->NextNode = Prev;
-                return Current;
-
-
-            }
-        }
-        PPrev = Prev;
-        Prev = Current;
-        //current 의 주소값을 current의 다음 주소값으로 갱신
-        Current = Current->NextNode;
-    }
-
-
-    ////current 는 head ( list 공간의 값 )을 가지고 있고
-    //Node* Current = *Head;
-    ////전 노드
-    //Node* Prev = NULL;
-    ////전전 노드
-    //Node* PPrev = NULL;
-    //while (Current != NULL)
-    //{
-    //    //Current 의 값이 스코어 값과 같으면?
-    //    if (Current->Data.score == scoreValue)
-    //    {
-    //        Current->Frequency++;
-    //        if (Current == *Head)   //current 가 헤드인경우
-    //        {
-    //            return Current;
-    //        }
-    //        else if (Current->NextNode == NULL) //current 가 꼬리인경우
-    //        {
-    //            Current->NextNode = Prev;
-    //            Prev->NextNode = NULL;
-    //            PPrev->NextNode = Current;
-
-    //            return Current;
-    //        }
-    //        else
-    //        {
-    //            Prev->NextNode = Current->NextNode;
-    //            //current 가 중간값인경우
-    //            Current->NextNode = Prev;
-    //            PPrev->NextNode = Current;
-    //        }
-
-    //    }
-    //    PPrev = Prev;
-    //    Prev = Current;
-    //    Current = Current->NextNode;
-
-    /*}*/
-    return NULL;
-}
-
-Node* SLL_Transpose1(Node** Head, double scoreValue)
-{
-    Node* Current = *Head;
-    Node* Prev = NULL;
-    Node* PPrev = NULL;
-
-    while (Current != NULL) //null이 아닐 때까지 돈다
-    {
-        if (Current->Data.score == scoreValue)  
-        {
-            if (Current == *Head)   //현재 노드가 헤드일 때
-            {
-                return Current;
-            }
-            else if (Current->NextNode == NULL) //현재 노드가 꼬리일 때
-            {
-                Prev->NextNode = Current->NextNode;
-                PPrev->NextNode = Current;
-                Current->NextNode = Prev;
-
-                return Current;
-            }
-            else if (Current==(*Head)->NextNode) //현재 노드가 헤드 다음일 떄
-            {
-                (*Head)->NextNode = Current->NextNode;
-                Current->NextNode = *Head;
-                *Head = Current;
-            }
-            else        //현재 노드가 중간값일때
-            {
-                Prev->NextNode = Current->NextNode;
-                Current->NextNode = Prev;
-                PPrev->NextNode = Current;
-
-                return Current;
-            }
-            
-
-        }
-        PPrev = Prev;
-        Prev = Current;
-        Current = Current->NextNode;
-    }
-
-}
-
-//전진이동법
+#pragma region 전진이동법 : 헤드로 이동
 /*
 찾는 값을 가지고 있는 노드를 찾으면 링크에서 제외한다.
 찾은 다음에는 찾은 노드의 앞쪽 노드와 뒷쪽 노드를 연결해준다
@@ -30214,17 +30056,17 @@ Node* SLL_Transpose1(Node** Head, double scoreValue)
 current 의 위치에서는 앞쪽 노드를 알 수 없기 때문에 이동때마다 prev 노드가 앞쪽
 주소를 가지고 있어야 한다.
 */
+//찾은 노드를 링크에서 뺀다
+//뺸 노드를 헤드로 만든다
+//찾은 노드의 전에 있는 노드를 찾은 노드의 다음이랑 연결한다
+//1. 내가 찾고자 하는 노드가 헤드인경우 -> 아무것도 안한다
+//2. 내가 찾고자 하는 노드가 중간에 있을 경우 ( 앞과 뒤에있는걸 연결하고 앞으로 보냄)
+//3. 내가 찾고자 하는 노드가 꼬리에 있을 경우 ( 앞에있는걸 null로 만들고 앞으로 보냄)
+
+//하려고 하는 것 : 헤드로 이동하게 한다
+#pragma endregion
 Node* SLL_MoveToFront(Node** Head,  double scoreValue) {
 
-    //찾은 노드를 링크에서 뺀다
-    //뺸 노드를 헤드로 만든다
-    //찾은 노드의 전에 있는 노드를 찾은 노드의 다음이랑 연결한다
-
-    //1. 내가 찾고자 하는 노드가 헤드인경우 -> 아무것도 안한다
-    //2. 내가 찾고자 하는 노드가 중간에 있을 경우 ( 앞과 뒤에있는걸 연결하고 앞으로 보냄)
-    //3. 내가 찾고자 하는 노드가 꼬리에 있을 경우 ( 앞에있는걸 null로 만들고 앞으로 보냄)
-
-    //하려고 하는 것 : 헤드로 이동하게 한다
     
     Node* Current = *Head;  //헤드노드의 주소값을 Current 노드에 저장
     Node* Prev = NULL;  //이전 노드의 주소값을 저장하는 노드
@@ -30255,8 +30097,8 @@ Node* SLL_MoveToFront(Node** Head,  double scoreValue) {
             else
             {
                 //찾는 값을 가진 노드가 헤드도 꼬리도 아닌 중앙에 값이 있는 경우
-
-                Prev->NextNode = Current->NextNode;
+                //이동시킬 노드를 링크에서 제거
+                Prev->NextNode = Current->NextNode; //링크에서 빠짐
                 //Current를 헤드노드로 만든다
                 Current->NextNode = *Head;
                 *Head = Current;
@@ -30269,36 +30111,8 @@ Node* SLL_MoveToFront(Node** Head,  double scoreValue) {
         //current가 그 다음 노드의 주소값으로 계속 갱신된다 (꼬리까지)
         //꼬리의 노드는 null이기 떄문에 거기까지 돈다.
         Current = Current->NextNode;
-
     }
-    /*Node* Current = Head;
-    Node* Temp = *Head;*/
-    //while (1)
-    //{       //이게 매치노드라는거자나?
-    //    if (Current->NextNode-> Data.score == scoreValue)
-    //    {
-    //        //매치노드를 템프에 담고
-    //        Node* Temp = Current->NextNode;
-
-    //        Current->NextNode = Temp->NextNode;
-
-    //        Temp->NextNode = (*Head);
-
-    //        (*Head) = Temp;
-
-    //        //현재 노드의 다음 노드
-
-    //        /*MatchNode->NextNode = Current->NextNode;
-    //        
-    //        MatchNode->NextNode = Temp;
-    //        MatchNode = *Head;*/
-
-    //        return Temp;
-    //    }
-    //    Current = Current->NextNode;
-    //}
-    //return NULL;
-    }
+}
 
 Node* SLL_MoveToFront1(Node** Head, double scoreValue)
 {
@@ -30342,6 +30156,121 @@ Node* SLL_MoveToFront1(Node** Head, double scoreValue)
     }
 
 }
+
+#pragma region 전위법 : 한 단계 앞쪽으로 이동
+//자기 앞쪽노드의 앞쪽으로 간다.
+/*
+1. 찾는 값을 가진 노드가 헤드인 경우
+2. 찾는 값을 가진 노드가 꼬리인 경우
+3. 찾는 값을 가진 노드가 헤드 다음인 경우 (앞으로 가면서 헤드가 된다)
+4. 찾는 값을 가진 노드가 헤드도 꼬리도 아닌 경우
+*/
+#pragma endregion
+Node* SLL_Transpose(Node** Head, double scoreValue) 
+{
+    Node* Current = *Head;
+    Node* Prev = NULL;
+    Node* PPrev = NULL;
+
+    //링크드 리스트를 헤드에서 꼬리까지 순회
+    //currentn변수에 저장되어있는 값이 꼬리노드 다음이 아닌 경우
+    while (Current != NULL)
+    {
+        //내가 찾는 값을 가진 노드를 찾는다
+        if (Current->Data.score == scoreValue)
+        {
+            if (Current == *Head)
+            {
+                //헤드인경우는 그냥 리턴
+                return Current;
+            }
+            else if (Current == (*Head)->NextNode)
+            {
+                //찾는 값을 가진 노드가 헤드 다음인 경우
+                //current노드를 링크에서 제거
+                (*Head)->NextNode = Current->NextNode;
+                //current를 헤드 노드로 만든다
+                //current 다음노드에 헤드노드의 주소값을 기록
+                Current->NextNode = (*Head);
+                //메인의 list 변수 (* head) 에 current 변수에 저장된 주소값을 저장하여 
+                //헤드노드를 변경
+                (*Head) = Current;
+
+                return Current;
+            }
+            else if (Current->NextNode == NULL)
+            {
+                //찾는 값을 가진 노드가 꼬리인 경우
+                 Prev->NextNode=Current->NextNode;
+
+                PPrev->NextNode = Current;
+                Current->NextNode = Prev;
+                return Current;
+            }
+            else
+            {
+                //찾는 값을 가진 노드가 헤드도 꼬리도 아닌 경우
+                Prev->NextNode = Current->NextNode;
+
+                PPrev->NextNode = Current;
+                Current->NextNode = Prev;
+                return Current;
+            }
+        }
+        PPrev = Prev;
+        Prev = Current;
+        //current 의 주소값을 current의 다음 주소값으로 갱신
+        Current = Current->NextNode;
+    }
+    return NULL;
+}
+
+Node* SLL_Transpose1(Node** Head, double scoreValue)
+{
+    Node* Current = *Head;
+    Node* Prev = NULL;
+    Node* PPrev = NULL;
+
+    while (Current != NULL) //null이 아닐 때까지 돈다
+    {
+        if (Current->Data.score == scoreValue)  
+        {
+            if (Current == *Head)   //현재 노드가 헤드일 때
+            {
+                return Current;
+            }
+            else if (Current->NextNode == NULL) //현재 노드가 꼬리일 때
+            {
+                Prev->NextNode = Current->NextNode;
+                PPrev->NextNode = Current;
+                Current->NextNode = Prev;
+
+                return Current;
+            }
+            else if (Current==(*Head)->NextNode) //현재 노드가 헤드 다음일 떄
+            {
+                (*Head)->NextNode = Current->NextNode;
+                Current->NextNode = *Head;
+                *Head = Current;
+
+                return Current;
+            }
+            else        //현재 노드가 중간값일때
+            {
+                Prev->NextNode = Current->NextNode;
+                Current->NextNode = Prev;
+                PPrev->NextNode = Current;
+
+                return Current;
+            }
+        }
+        PPrev = Prev;
+        Prev = Current;
+        Current = Current->NextNode;
+    }
+}
+
+#pragma region 계수법
 //계수법
 /*
 노드에 frequency라는 멤버를 추가한다.
@@ -30352,9 +30281,12 @@ Node* SLL_MoveToFront1(Node** Head, double scoreValue)
 1. 찾는 값을 가진 노드를 찾는다
 2. 찾는 값을 가진 노드의 빈도수를 1 올린다
 3. 찾는 값을 가진 노드와 앞노드의 빈도수를 비교한다
-4. 찾는 값을 가진 노드의 앞노드가 찾는 값을 가진 노드의 빈도수보다 작으면 찾는 값을 가진 노드를 링크에서 제거한다
+4. 찾는 값을 가진 노드의 앞노드가 찾는 값을 가진 노드의 빈도수보다 작으면 
+   찾는 값을 가진 노드를 링크에서 제거한다
 5. 헤드에서부터 빈도수를 비교해서 삽입될 위치를 찾는다
 */
+#pragma endregion
+
 Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
 {
     Node* Current = *Head;
@@ -30432,6 +30364,12 @@ Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
     }
 }
 
+
+Node* SLL_FindWithFrequency1(Node** Head, double scoreValue)
+{
+
+}
+
 int main(void)
 {
     int   i = 0;
@@ -30460,14 +30398,14 @@ int main(void)
         //Node* MatchNode = SLL_SequentialSearch1(List, inputValue);
         
         //전진이동법 :노드형 포인터 포인터
-        //Node* MatchNode = SLL_Transpose1(&List, inputValue);
         // 헤드의 주소값을 저장하는 공간의 주소를 받기 때문에 list 변수의 주소값을 전달해야 한다
-        Node* MatchNode = SLL_MoveToFront1(&List,inputValue);
+        //Node* MatchNode = SLL_MoveToFront1(&List,inputValue);
         
         //전위법
+        //Node* MatchNode = SLL_Transpose1(&List, inputValue);
         
         //계수
-        //Node* MatchNode = SLL_FindWithFrequency(&List, inputValue);
+        Node* MatchNode = SLL_FindWithFrequency1(&List, inputValue);
 
         if (inputValue == -1) {
             printf("작업을 중지");

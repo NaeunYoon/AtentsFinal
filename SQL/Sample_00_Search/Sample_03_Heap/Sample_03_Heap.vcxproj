@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3a5cd52e-bb0a-46e4-b80d-4a0d62f721c1}</ProjectGuid>
-    <RootNamespace>Sample01BinarySearchTree</RootNamespace>
+    <ProjectGuid>{8f28b95c-0bae-40c4-a095-31b305b315d8}</ProjectGuid>
+    <RootNamespace>Sample03Heap</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinarySearchTree.c" />
-    <ClCompile Include="Test_BinarySearchTree.c" />
+    <ClCompile Include="Heap.c" />
+    <ClCompile Include="Test_Heap.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="Heap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

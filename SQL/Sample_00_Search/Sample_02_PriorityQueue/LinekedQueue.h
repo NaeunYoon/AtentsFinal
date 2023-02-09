@@ -8,7 +8,7 @@
 typedef struct tagNode
 {
     char* Data;
-    int Priority;
+    int Priority;   //노드에 우선순위 추가
     struct tagNode* PrevNode;
     struct tagNode* NextNode;
 } Node;
@@ -23,6 +23,7 @@ typedef struct tagLinkedQueue
 void  LQ_CreateQueue(LinkedQueue** Queue);
 void  LQ_DestroyQueue(LinkedQueue* Queue);
 
+//Priority  추가
 Node* LQ_CreateNode(char* Data, int priority);
 void  LQ_DestroyNode(Node* _Node);
 

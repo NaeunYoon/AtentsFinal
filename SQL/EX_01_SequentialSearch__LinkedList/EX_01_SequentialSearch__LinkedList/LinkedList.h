@@ -10,7 +10,7 @@ typedef Score ElementType;//element type 은 Score형이다
 typedef struct tagNode //노트타입을 만든거다.
 {
     ElementType Data; //데이터
-    int Frequency;
+    int Frequency;  //Frequency 추가(계수법)
     struct tagNode* NextNode; //자기자신의 타입에 주소값을 저장하는 NextNode (다음 노드의 주소값을 저장)
 } Node;
 

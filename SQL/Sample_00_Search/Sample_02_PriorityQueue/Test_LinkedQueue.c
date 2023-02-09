@@ -18,7 +18,7 @@ int main(void)
     while (1)
     {
         printf("큐에 저장할 데이터를 입력하세요");
-        scanf("%d,$s", &Priority, data);
+        scanf_s("%d,$s", &Priority, data);
 
         if (Priority <= -1)
         {

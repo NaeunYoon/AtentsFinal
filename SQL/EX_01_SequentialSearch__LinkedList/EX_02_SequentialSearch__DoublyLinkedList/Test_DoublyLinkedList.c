@@ -30011,6 +30011,7 @@ Score DataSet[] =
 
 #pragma endregion
 
+//순차탐색 : 앞-> 뒤 방향으로 탐색한다
 Node* DL_SequentialSearch(Node* Head, double searchValue)
 {
     Node* Current = Head;
@@ -30024,7 +30025,21 @@ Node* DL_SequentialSearch(Node* Head, double searchValue)
     }
     return NULL;
 }
-//전위법
+Node* DL_SequentialSearch1(Node* Head, double searchValue)
+{
+    Node* Current = Head;
+
+    while (Current != NULL)
+    {
+        if (Current->Data.score == searchValue)
+        {
+            return Current;
+        }
+        Current = Current->NextNode;
+    }
+}
+
+//전진이동법 : 헤드로 이동한다
 Node* DL_MoveToFront(Node** Head, double searchValue)
 {
     Node* Current = *Head;
@@ -30063,6 +30078,60 @@ Node* DL_MoveToFront(Node** Head, double searchValue)
 
     return NULL;
 }
+
+Node* DL_MoveToFront1(Node** Head, double searchValue)
+{
+    Node* Current = *Head;
+
+    while (Current != NULL)
+    {
+        if (Current->Data.score == searchValue)
+        {
+            if (Current == *Head)   //현재 노드가 헤드인 경우
+            {
+                return Current;
+            }
+            else if ((*Head)->NextNode == Current)  //헤드 다음 노드가 현재 노드인 경우
+            {
+                (*Head)->NextNode = Current->NextNode;
+                Current->NextNode->PrevNode = (*Head);
+
+                Current->NextNode = *Head;
+                (*Head)->PrevNode = Current;
+
+                *Head = Current;
+
+                return Current;
+            }
+            else if (Current->NextNode == NULL) //현재 노드가 꼬리인 경우
+            {
+                Current->PrevNode->NextNode = Current->NextNode;
+                //Current->PrevNode = NULL;
+
+                (*Head)->PrevNode = Current->NextNode;
+                Current->NextNode = *Head;
+
+                *Head = Current;
+
+                return Current;
+            }
+            else  // 중간값인 경우
+            {
+                Current->PrevNode->NextNode = Current->NextNode;
+                Current->NextNode->PrevNode = Current->PrevNode;
+                
+                (*Head)->PrevNode = Current->NextNode;
+                Current->NextNode = *Head;
+                *Head = Current;
+
+                return Current;
+            }
+        }
+        Current = Current->NextNode;
+    }
+
+}
+//전위법 : 전 전 노드 사이로 삽입한다
 Node* DL_Transpose(Node** Head, double searchValue)
 {
     Node* Current = *Head;  //Current 변수에 헤드노드의 주소값을 저장
@@ -30117,6 +30186,48 @@ Node* DL_Transpose(Node** Head, double searchValue)
 
     return NULL;
 }
+
+Node* DL_Transpose1(Node** Head, double searchValue)
+{
+    Node* Current = *Head;
+    while (Current != NULL)
+    {
+        if (Current->Data.score == searchValue)
+        {
+            if (Current == *Head)
+            {
+                return Current;
+            }
+            else if ((*Head)->NextNode == Current)
+            {
+                (*Head)->NextNode = Current->NextNode;
+                Current->NextNode->PrevNode = *Head;
+
+                Current->NextNode = *Head;
+                (*Head)->PrevNode = Current;
+                *Head = Current;
+
+                return Current;
+            }
+            else if (Current->NextNode == NULL)
+            {
+
+
+                return Current;
+            }
+            else 
+            {
+
+
+
+                return Current;
+            }
+        }
+        Current = Current->NextNode;
+    }
+
+}
+//계수법 : 검색횟수가 많은 노드를 반환한다
 Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
 {
     Node* Current = *Head;
@@ -30150,7 +30261,6 @@ int main(void)
         NewNode = DLL_CreateNode(DataSet[i]);  //주소값 newNode 를 리턴
         DLL_AppendNode(&List, NewNode);
     }
-
     double SearchValue = 0.0;
     while (1)
     {
@@ -30161,12 +30271,15 @@ int main(void)
         {
             break;
         }
+
+        //순차탐색
+        //Node* MatchNode = DL_SequentialSearch1(List, SearchValue);
         //전진이동법
-        //Node* MatchNode = DL_SequentialSearch(List, SearchValue);
-        // 전위법
-        //Node* MatchNode = DL_MoveToFront(&List, SearchValue);
+        //Node* MatchNode = DL_MoveToFront1(&List, SearchValue);
+        //전위법
+        Node* MatchNode = DL_Transpose1(&List, SearchValue);
         //계수법
-        Node* MatchNode = DL_Transpose(&List, SearchValue);
+        //Node* MatchNode = DL_Transpose1(&List, SearchValue);
         
         if(MatchNode != NULL)
         {
@@ -30182,31 +30295,12 @@ int main(void)
             Current = DLL_GetNodeAt(List, i);
             printf("List[%d] : Frequency : %d, number : %d, score : %lf\n", i,Current->Frequency,Current->Data.number, Current->Data.score);
         }
-        for (int i = 29990; i < Length; i++)
+        for (int i = Length-10; i < Length; i++)
         {
             Current = DLL_GetNodeAt(List, i);
             printf("List[%d] : Frequency : %d, number : %d, score : %lf\n", i,Current->Frequency,Current->Data.number, Current->Data.score);
         }
 
-    }
-
-
-    /*  리스트 출력 */
-    Count = DLL_GetNodeCount(List);
-    for (i = 0; i < Count; i++)
-    {
-        Current = DLL_GetNodeAt(List, i);
-        printf("List[%d] : %d\n", i, Current->Data);
-    }
-
-   
-
-    /*  리스트 출력 */
-    Count = DLL_GetNodeCount(List);
-    for (i = 0; i < Count; i++)
-    {
-        Current = DLL_GetNodeAt(List, i);
-        printf("List[%d] : %d\n", i, Current->Data);
     }
 
     /*  모든 노드를 메모리에서 제거     */
