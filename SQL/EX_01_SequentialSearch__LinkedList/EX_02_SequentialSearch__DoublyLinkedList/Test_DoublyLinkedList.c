@@ -30042,29 +30042,44 @@ Node* DL_SequentialSearch1(Node* Head, double searchValue)
 //전진이동법 : 헤드로 이동한다
 Node* DL_MoveToFront(Node** Head, double searchValue)
 {
+    //헤드의 주소값을 current 변수에 저장
     Node* Current = *Head;
 
-    while (Current !=NULL)
+    while (Current !=NULL)  //current에 저장된 주소값이 꼬리노드의 다음이 아닐 때까지
     {
-        if (Current->Data.score == searchValue) {
-
+        if (Current->Data.score == searchValue) //찾는 값을 가진 노드를 찾는다
+        {   //찾는 값을 가진 노드가 헤드인 경우
             if (Current == *Head)
             {
+                //current -> prev == null 이것도 헤드임
                 return Current;
             }
+            //찾는 값이 꼬리인 경우
             else if (Current->NextNode == NULL)
             {
-                Current->PrevNode->NextNode = NULL;
-                Current->PrevNode = NULL;
-                Current->NextNode=*Head;
+                //찾는 감ㅅ을 가진 노드를 링크에서 제거
+                Current -> PrevNode -> NextNode = NULL;
+                //Current->PrevNode->NextNode = Current->NextNode; (이렇게 해도 됨)
+                //현재 노드의 이전노드도 제거
+                Current -> PrevNode = NULL;
+                //현재 노드의 다음 노드에 헤드노드의 주소값을 넣음
+                Current -> NextNode = *Head;
+                Current->NextNode->PrevNode = Current;
+                //현재 노드를 헤드에 넣는다.
                 *Head = Current;
             }
+            //찾는 값을 가진 노드가 중간값인 경우
             else 
             {
+                //찾는 값을 가진 노드를 링크에서 제거
                 Current->PrevNode->NextNode = Current->NextNode;
                 Current->NextNode->PrevNode = Current->PrevNode;
+
+                //확실하게 널 처리 해줌
                 Current->PrevNode = NULL;
                 Current->NextNode = NULL;
+
+                //current를 헤드노드로 만든다
                 Current->NextNode = *Head;
                 Current->NextNode->PrevNode = Current;
                 *Head = Current;
@@ -30140,21 +30155,23 @@ Node* DL_Transpose(Node** Head, double searchValue)
     {
         if (Current->Data.score == searchValue)
         {
-            if (Current == *Head)
+            if (Current == *Head)//찾는 값을 가진 노드가 헤드인 경우
             {
                 return Current;
             }
-            else if (Current== (*Head)->NextNode)
+            else if (Current== (*Head)->NextNode)//찾는 값을 가진 노드가 헤드 노드 다음인 경우
             {
+                //현재 노드를 링크에서 제거
                 Current->PrevNode->NextNode = Current->NextNode;
                 Current->NextNode->PrevNode = Current->PrevNode;
+                //current 를 헤드노드로 만든다
                 Current->NextNode = *Head;
                 (*Head)->PrevNode = Current;
                 (*Head) = Current;
 
                 return Current;
             }
-            else if(Current->NextNode==NULL)
+            else if(Current->NextNode==NULL)//찾는 값을 가진 노드가 꼬리인 경우 
             {
 
                 // Current노드를 링크에서 제거
@@ -30170,6 +30187,7 @@ Node* DL_Transpose(Node** Head, double searchValue)
             }
             else 
             {
+                // Current노드를 링크에서 제거
                 Current->PrevNode->NextNode = Current->NextNode;
                 Current->NextNode->PrevNode = Current->PrevNode;
 
@@ -30211,13 +30229,24 @@ Node* DL_Transpose1(Node** Head, double searchValue)
             }
             else if (Current->NextNode == NULL)
             {
+                Current->PrevNode->NextNode = Current->NextNode;
 
+                Current->PrevNode->PrevNode->NextNode = Current;
+                Current->NextNode = Current->PrevNode;
+                Current->PrevNode = Current->PrevNode->PrevNode;
+                Current->PrevNode->PrevNode = Current;
 
                 return Current;
             }
             else 
             {
+                Current->PrevNode->NextNode = Current->NextNode;
+                Current->NextNode->PrevNode = Current->PrevNode;
 
+                Current->PrevNode->PrevNode->NextNode = Current;
+                Current->NextNode = Current->PrevNode;
+                Current->PrevNode = Current->PrevNode->PrevNode;
+                Current->PrevNode->PrevNode = Current;
 
 
                 return Current;

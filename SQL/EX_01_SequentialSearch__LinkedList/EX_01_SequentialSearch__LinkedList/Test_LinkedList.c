@@ -30291,13 +30291,16 @@ Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
 {
     Node* Current = *Head;
     Node* Prev = NULL;
-    while (Current!=NULL)
+    while (Current != NULL)
     {
         if (Current->Data.score == scoreValue)
         {
             break;
         }
 
+        Prev = Current;
+        Current = Current->NextNode;
+    }
         if (Current == NULL)
         {
             //찾는 값을 가진 노드가 없는 경우
@@ -30308,6 +30311,7 @@ Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
             //찾는 값을 가진 노드가 있는 경우
             //찾는 값을 가진 노드의 주소값을 MatchNode에 저장
             Node* MatchNode = Current;
+            //빈도수를 증가시킨다
             MatchNode->Frequency++;
 
             if (MatchNode == *Head)
@@ -30322,51 +30326,170 @@ Node* SLL_FindWithFrequency(Node** Head, double scoreValue)
                 if (Prev->Frequency < MatchNode->Frequency)
                 {
                     //이전노드 frequency가 더 작은 경우 노드를 링크에서 제거한다
-                }
-                else if (Prev->Frequency == MatchNode->Frequency)
-                {
-                    return MatchNode;
-                }
-                else if (Prev->Frequency < MatchNode->Frequency)
-                {
-                    Prev->NextNode = MatchNode->NextNode;
+                    Prev->NextNode - MatchNode->NextNode;
                     Prev = NULL;
-                    Current = (*Head);
-
-                    while (Current !=NULL)
+                    Current = *Head;
+                    while (Current != NULL)
                     {
-                        if (Current->Frequency < MatchNode->Frequency)
-                        {
+                        if (Current->Frequency < MatchNode->Frequency) {
                             if (Prev == NULL)
                             {
-                                //빈도수가 작은 노드가 헤드노드인경우
-                                //매치노드가 헤드가 되어야함
+                                //빈도수가 작은 노드가 헤드노드인 경우 -> 매치노드가 헤드가 되어야 함
                                 MatchNode->NextNode = Current;
-                                (*Head) = MatchNode;
+                                *Head = MatchNode;
                                 return MatchNode;
                             }
                             else
                             {
-                                //빈도수가 작은 노드가 헤드노드가 아닌 경우
+                                //빈도수가 작은 노드가 헤드가 아닌 경우
                                 Prev->NextNode = MatchNode;
                                 MatchNode->NextNode = Current;
                                 return MatchNode;
                             }
-                            Prev = Current;
-                            Current = Current->NextNode;
                         }
+                        Prev = Current;
+                        Current = Current->NextNode;
                     }
+                }
+                //else if (Prev->Frequency == MatchNode->Frequency)
+                //{
+                //    return MatchNode;
+                //}
+                //else if (Prev->Frequency < MatchNode->Frequency)
+                //{
+                //    Prev->NextNode = MatchNode->NextNode;
+                //    Prev = NULL;
+                //    Current = (*Head);
+
+                //    while (Current !=NULL)
+                //    {
+                //        if (Current->Frequency < MatchNode->Frequency)
+                //        {
+                //            if (Prev == NULL)
+                //            {
+                //                //빈도수가 작은 노드가 헤드노드인경우
+                //                //매치노드가 헤드가 되어야함
+                //                MatchNode->NextNode = Current;
+                //                (*Head) = MatchNode;
+                //                return MatchNode;
+                //            }
+                //            else
+                //            {
+                //                //빈도수가 작은 노드가 헤드노드가 아닌 경우
+                //                Prev->NextNode = MatchNode;
+                //                MatchNode->NextNode = Current;
+                //                return MatchNode;
+                //            }
+                //            Prev = Current;
+                //            Current = Current->NextNode;
+                   /*     }
+                    }*/
                 }
             }
         }
-        Prev = Current;
-        Current = Current->NextNode;
-    }
-}
+       
+    
+
 
 
 Node* SLL_FindWithFrequency1(Node** Head, double scoreValue)
 {
+    Node* Current = *Head;
+    Node* Prev = NULL;
+    while (Current != NULL)
+    {   
+        if (Current->Data.score == scoreValue)
+        {
+            if (Current == *Head)
+            {
+                //현재 노드가 헤드인경우
+                //++해주고 리턴한다
+                Current->Frequency++;
+                return Current;
+            }
+            else if (Current->NextNode == NULL)
+            {
+                //현재 노드가 꼬리인 경우
+                Current->Frequency++;
+                Node* tmp = *Head;
+                while (tmp != NULL)
+                {
+                    if (tmp->Frequency > Current->Frequency)
+                    {
+                        Prev->NextNode = Current->NextNode;
+                        Current->NextNode = tmp->NextNode;
+                        tmp->NextNode = Current;
+                        return Current;
+                    }
+                    else if((tmp->Frequency <= Current->Frequency))
+                    {
+                        Prev->NextNode = Current->NextNode;
+                        
+                        Current->NextNode = tmp;
+                        tmp = Current;
+                        return Current;
+                    }
+                    tmp = tmp->NextNode;
+                }
+            }
+            else if (Current = (*Head)->NextNode)
+            {
+                Current->Frequency++;
+
+                Node* temp = *Head;
+                while (temp != NULL)
+                {
+                    if (temp->Frequency > Current->Frequency)
+                    {
+                        Current->NextNode = temp->NextNode;
+                        temp->NextNode = Current;
+
+                        return Current;
+                    }
+                    else
+                    {
+                        temp->NextNode = Current->NextNode;
+
+                        Current->NextNode = temp;
+                        *Head = Current;
+                        return Current;
+                    }
+
+                    temp = temp->NextNode;
+                }
+
+            }
+            else 
+            {
+                Prev->NextNode = Current->NextNode;
+                Current->Frequency++;
+                Node* tmp = *Head;
+                while (tmp != NULL)
+                {
+                    if (tmp->Frequency > Current->Frequency)
+                    {
+                        Prev->NextNode = Current->NextNode;
+                        Current->NextNode = tmp->NextNode;
+                        tmp->NextNode = Current;
+                        return Current;
+
+                    }
+                    else
+                    {
+                        Prev->NextNode = Current->NextNode;
+
+                        Current->NextNode = tmp;
+                    }
+
+                    tmp = tmp->NextNode;
+                }
+            }
+
+
+        }
+        Prev = Current;
+        Current = Current->NextNode;
+    }
 
 }
 
@@ -30405,7 +30528,7 @@ int main(void)
         //Node* MatchNode = SLL_Transpose1(&List, inputValue);
         
         //계수
-        Node* MatchNode = SLL_FindWithFrequency1(&List, inputValue);
+        Node* MatchNode = SLL_FindWithFrequency(&List, inputValue);
 
         if (inputValue == -1) {
             printf("작업을 중지");
